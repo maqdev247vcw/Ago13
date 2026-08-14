@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estructuras · Virtual Cloud World LLC</title>
+<meta name="description" content="LLC vs. C-Corporation y selección de estado: cuál elegir según su objetivo.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1B2356;--navy-deep:#10142F;--navy-mid:#232B6B;--navy-soft:#2C3570;
+  --gold:#C18A33;--gold-soft:#E0B563;--gold-pale:#F3E3C2;--gold-faint:#FBF4E6;
+  --cream:#F8F6F1;--pale-blue:#EEF0FA;--white:#fff;
+  --text:#1B2356;--muted:#5B6178;--border:#E2E4EF;
+  --green:#2A7A4B;--green-pale:#E8F5EE;--max:1100px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--cream);line-height:1.65;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;letter-spacing:-.02em;line-height:1.15;}
+a{color:inherit;text-decoration:none;}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+.eyebrow{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:9px;margin-bottom:12px;}
+.eyebrow::before{content:"";width:20px;height:1.5px;background:currentColor;}
+section{padding:80px 0;}
+@media(max-width:700px){section{padding:52px 0;}.wrap{padding:0 16px;}}
+/* NAV */
+header{position:sticky;top:0;z-index:200;background:rgba(248,246,241,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+nav.wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px;}
+.logo{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--navy);display:flex;align-items:baseline;gap:6px;flex-shrink:0;}
+.logo em{font-style:normal;font-family:'Inter',sans-serif;font-size:9px;font-weight:700;letter-spacing:.12em;color:var(--gold);border:1px solid var(--gold);padding:2px 5px;border-radius:3px;}
+.nav-links{display:flex;gap:20px;font-size:13px;font-weight:500;color:var(--muted);flex-wrap:wrap;}
+.nav-links a:hover{color:var(--navy);}
+.nav-links a.active{color:var(--navy);font-weight:700;}
+.nav-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.lang-toggle{display:flex;background:var(--pale-blue);border:1px solid var(--border);border-radius:5px;overflow:hidden;}
+.lang-btn{padding:6px 11px;cursor:pointer;border:none;background:none;font-family:inherit;font-size:11.5px;font-weight:700;color:var(--muted);transition:.15s;letter-spacing:.04em;}
+.lang-btn.active{background:var(--navy);color:#fff;}
+.nav-cta{background:var(--navy);color:#fff !important;padding:8px 16px;border-radius:5px;font-weight:600;font-size:13px;white-space:nowrap;transition:.2s;}
+.nav-cta:hover{background:var(--navy-soft);}
+@media(max-width:900px){.nav-links{display:none;}}
+/* BREADCRUMB */
+.breadcrumb{background:var(--pale-blue);border-bottom:1px solid var(--border);padding:10px 0;font-size:12.5px;color:var(--muted);}
+.breadcrumb a{color:var(--navy);font-weight:600;}
+.breadcrumb span{margin:0 6px;color:var(--border);}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:12px 22px;border-radius:5px;font-weight:600;font-size:14px;border:1px solid transparent;transition:.2s;cursor:pointer;font-family:inherit;}
+.btn-gold{background:var(--gold);color:var(--navy-deep);}
+.btn-gold:hover{background:var(--gold-soft);transform:translateY(-1px);}
+.btn-navy{background:var(--navy);color:#fff;}
+.btn-navy:hover{background:var(--navy-soft);}
+.btn-ghost{border-color:var(--border);color:var(--muted);background:var(--white);}
+.btn-ghost:hover{border-color:var(--navy);color:var(--navy);}
+/* SECTION HEAD */
+.section-head{max-width:680px;margin-bottom:40px;}
+.section-head h2{font-size:clamp(22px,3vw,34px);color:var(--navy);margin-bottom:10px;}
+.section-head p{color:var(--muted);font-size:15px;}
+/* CARDS GRID */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+@media(max-width:860px){.grid-3{grid-template-columns:1fr 1fr;}.grid-4{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}}
+.card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 22px;transition:.2s;}
+.card:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 6px 24px rgba(27,35,86,.07);}
+.card h3{font-size:17px;color:var(--navy);margin-bottom:7px;}
+.card p{font-size:13.5px;color:var(--muted);}
+/* DARK SECTION */
+.dark-section{background:var(--navy);color:#fff;padding:80px 0;}
+.dark-section .section-head h2{color:#fff;}
+.dark-section .section-head p{color:#B0B6D6;}
+.dark-section .eyebrow{color:var(--gold-soft);}
+/* CALLOUT */
+.callout{background:var(--navy);color:#fff;border-radius:12px;padding:28px 32px;margin-top:36px;display:flex;gap:14px;align-items:flex-start;}
+.callout .ic{font-size:19px;color:var(--gold-soft);flex-shrink:0;margin-top:2px;}
+.callout h4{font-size:14px;color:var(--gold-soft);margin-bottom:6px;font-family:'Inter',sans-serif;font-weight:700;}
+.callout p{font-size:13px;color:#C5C9E4;line-height:1.7;}
+/* NEXT PAGE BAR */
+.next-bar{background:var(--navy-deep);padding:28px 0;margin-top:60px;}
+.next-bar .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;}
+.next-bar p{font-size:13px;color:#9EA6D0;}
+.next-bar h4{font-size:16px;color:#fff;font-family:'Playfair Display',serif;}
+/* FOOTER */
+footer{background:var(--navy-deep);color:#6B73A0;padding:36px 0 28px;font-size:12px;}
+.foot-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;margin-bottom:20px;}
+.foot-nav{display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;}
+.foot-nav a:hover{color:var(--gold-soft);}
+.legal{border-top:1px solid rgba(255,255,255,.07);padding-top:18px;line-height:1.8;}
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+/* COMP TABLE */
+.comp-wrap{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.comp-tabs{display:flex;background:var(--pale-blue);}
+.comp-tab{flex:1;text-align:center;padding:15px 8px;font-weight:700;font-size:13.5px;color:var(--muted);cursor:pointer;border:none;border-bottom:3px solid transparent;background:none;font-family:inherit;transition:.2s;}
+.comp-tab.active{color:var(--navy);border-bottom-color:var(--gold);background:var(--white);}
+.comp-body{padding:28px;}
+.comp-pane{display:none;}
+.comp-pane.active{display:block;}
+.comp-row{display:grid;grid-template-columns:160px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);}
+.comp-row:last-child{border:none;}
+.comp-row .k{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--navy);}
+.comp-row .v{font-size:14px;color:var(--muted);}
+.comp-fit{margin-top:14px;background:var(--gold-faint);border-left:3px solid var(--gold);padding:12px 14px;border-radius:6px;font-size:14px;color:var(--navy);}
+@media(max-width:560px){.comp-row{grid-template-columns:1fr;gap:3px;}.comp-body{padding:18px;}}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="index.html" class="logo">Virtual Cloud World <em>LLC</em></a>
+    <div class="nav-links"><a href="index.html" data-i18n="nav.home">Inicio</a><a href="ejes.html" data-i18n="nav.ejes">Qué hacemos</a><a href="comercial.html" data-i18n="nav.comercial">Operación comercial</a><a href="estructuras.html" class="active" data-i18n="nav.struct">Estructuras</a><a href="proceso.html" data-i18n="nav.proceso">Proceso</a><a href="cumplimiento.html" data-i18n="nav.comply">Cumplimiento</a><a href="ejemplo.html" data-i18n="nav.ejemplo">Caso de uso</a></div>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btn-es" onclick="setLang('es')">ES</button>
+        <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+      <a href="cuestionario.html" class="nav-cta" data-i18n="nav.cta">Iniciar cuestionario</a>
+    </div>
+  </nav>
+</header>
+
+<div class="breadcrumb"><div class="wrap"><a href="index.html" data-i18n="nav.home">Inicio</a><span>›</span><span data-i18n="nav.struct">Estructuras</span></div></div>
+<section>
+<div class="wrap">
+  <div class="section-head reveal">
+    <div class="eyebrow" data-i18n="st.eyebrow">Tipo de entidad</div>
+    <h2 data-i18n="st.h2">LLC vs. C-Corporation: la decisión correcta según su objetivo</h2>
+    <p data-i18n="st.p">La estructura que elija determinará su carga fiscal, privacidad y acceso a capital. Nunca es igual para todos.</p>
+  </div>
+  <div class="comp-wrap reveal">
+    <div class="comp-tabs">
+      <button class="comp-tab active" data-tab="llc" data-i18n="tab.llc">LLC — Sociedad de Responsabilidad Limitada</button>
+      <button class="comp-tab" data-tab="corp" data-i18n="tab.corp">C-Corporation</button>
+    </div>
+    <div class="comp-body">
+      <div class="comp-pane active" id="pane-llc">
+        <div class="comp-row"><div class="k" data-i18n="cr.tax">Tributación</div><div class="v" data-i18n="llc.tax">Transparencia fiscal (pass-through): la utilidad tributa a nivel del socio, no de la sociedad. Sin impuesto federal corporativo.</div></div>
+        <div class="comp-row"><div class="k" data-i18n="cr.foreign">Socios no residentes</div><div class="v" data-i18n="llc.foreign">Permitido. Un ciudadano colombiano puede ser 100% propietario sin visa ni presencia física en EE.UU.</div></div>
+        <div class="comp-row"><div class="k" data-i18n="cr.privacy">Privacidad</div><div class="v" data-i18n="llc.privacy">Alta en Wyoming y New Mexico. Los socios no son datos públicos en la mayoría de estados.</div></div>
+        <div class="comp-row"><div class="k" data-i18n="cr.formalities">Formalidades</div><div class="v" data-i18n="llc.formalities">Bajas. No requiere junta directiva ni actas formales. Ideal para estructuras ágiles.</div></div>
+        <div class="comp-row"><div class="k" data-i18n="cr.bestfor">Ideal para</div><div class="v" data-i18n="llc.bestfor">Holding patrimonial, bienes raíces, servicios profesionales, e-commerce, inversiones.</div></div>
+        <div class="comp-row"><div class="k" data-i18n="cr.eci">Tratamiento ECI</div><div class="v" data-i18n="llc.eci">Sin oficina, empleados ni establecimiento fijo en EE.UU.: probablemente no genera ECI. Sin impuesto federal sobre la renta. Form 5472 + 1120 requeridos anualmente.</div></div>
+        <div class="comp-fit" data-i18n="llc.fit">✓ Recomendada para la mayoría de clientes de LATAM que buscan operar y proteger su patrimonio sin levantar capital institucional.</div>
+      </div>
+      <div class="comp-pane" id="pane-corp">
+        <div class="comp-row"><div class="k" data-i18n="cr.tax">Tributación</div><div class="v" data-i18n="corp.tax">Impuesto corporativo federal (21%) más impuesto a dividendos del accionista. Doble tributación en distribuciones.</div></div>
+        <div class="comp-row"><div class="k" data-i18n="cr.foreign">Socios no residentes</div><div class="v" data-i18n="corp.foreign">Permitido. Los accionistas extranjeros pueden ser propietarios completos sin restricciones de residencia.</div></div>
+        <div class="comp-row"><div class="k" data-i18n="cr.privacy">Privacidad</div><div class="v" data-i18n="corp.privacy">Moderada. La lista de directores puede ser pública según el estado; accionistas generalmente no.</div></div>
+        <div class="comp-row"><div class="k" data-i18n="cr.formalities">Formalidades</div><div class="v" data-i18n="corp.formalities">Altas. Requiere junta directiva, accionistas, actas corporativas y registros formales anuales.</div></div>
+        <div class="comp-row"><div class="k" data-i18n="cr.bestfor">Ideal para</div><div class="v" data-i18n="corp.bestfor">Startups que buscan venture capital, estructuras con stock options o que planean salida a bolsa.</div></div>
+        <div class="comp-fit" data-i18n="corp.fit">✓ Recomendada cuando el objetivo es levantar capital institucional, emitir acciones a empleados o prepararse para una ronda de inversión.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-head reveal" style="margin-top:60px;">
+    <div class="eyebrow" data-i18n="state.eyebrow">Jurisdicción</div>
+    <h2 data-i18n="state.h2">¿En qué estado constituir?</h2>
+    <p data-i18n="state.p">Cada estado tiene su propio régimen fiscal, nivel de privacidad y costo de mantenimiento. La elección importa.</p>
+  </div>
+  <div class="grid-4 reveal">
+    <div class="card"><div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;" data-i18n="st1.flag">Capital de riesgo</div><h4 style="font-size:18px;color:var(--navy);margin-bottom:8px;">Delaware</h4><p data-i18n="st1.p">Estándar de facto para startups e inversión institucional. Marco legal corporativo predecible, preferido por fondos de VC.</p></div>
+    <div class="card"><div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;" data-i18n="st2.flag">Privacidad máxima</div><h4 style="font-size:18px;color:var(--navy);margin-bottom:8px;">Wyoming</h4><p data-i18n="st2.p">Sin impuesto estatal a la renta. Mayor privacidad de socios. Bajo costo de mantenimiento. Ideal para estructuras patrimoniales.</p></div>
+    <div class="card"><div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;" data-i18n="st3.flag">Cercanía LATAM</div><h4 style="font-size:18px;color:var(--navy);margin-bottom:8px;">Florida</h4><p data-i18n="st3.p">Hub natural para negocios con Latinoamérica. Sin impuesto estatal a la renta personal. Mayor apertura bancaria remota.</p></div>
+    <div class="card"><div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;" data-i18n="st4.flag">Costo mínimo</div><h4 style="font-size:18px;color:var(--navy);margin-bottom:8px;">New Mexico</h4><p data-i18n="st4.p">Los costos de formación y mantenimiento más bajos del país. Privacidad alta. Ideal para estructuras de arranque.</p></div>
+  </div>
+</div>
+</section>
+<div class="next-bar"><div class="wrap"><div><p data-i18n="next.label">Siguiente sección</p><h4 data-i18n="next.proc">Proceso y entregables</h4></div><a href="proceso.html" class="btn btn-gold" data-i18n="next.btn">Continuar →</a></div></div>
+
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="logo" style="color:#fff;">Virtual Cloud World <em style="color:var(--gold-soft);border-color:var(--gold-soft);">LLC</em></div>
+      <nav class="foot-nav">
+        <a href="ejes.html" data-i18n="nav.ejes">Qué hacemos</a>
+        <a href="comercial.html" data-i18n="nav.comercial">Operación comercial</a>
+        <a href="estructuras.html" data-i18n="nav.struct">Estructuras</a>
+        <a href="proceso.html" data-i18n="nav.proceso">Proceso</a>
+        <a href="cumplimiento.html" data-i18n="nav.comply">Cumplimiento</a>
+        <a href="ejemplo.html" data-i18n="nav.ejemplo">Caso de uso</a>
+        <a href="cuestionario.html" data-i18n="nav.cta">Cuestionario</a>
+      </nav>
+    </div>
+    <div class="legal" data-i18n="footer.legal">Este sitio tiene fines informativos generales y no constituye asesoría legal, fiscal o financiera definitiva. Cada estructura societaria debe evaluarse con el apoyo de profesionales especializados, conforme a la normativa vigente de Estados Unidos y del país de residencia del cliente.<br>© 2026 Virtual Cloud World LLC. Florida, EE.UU. Todos los derechos reservados.</div>
+  </div>
+</footer>
+
+<script>
+const T = {
+  es: {"nav.home":"Inicio","nav.ejes":"Qué hacemos","nav.comercial":"Operación comercial","nav.struct":"Estructuras","nav.proceso":"Proceso","nav.comply":"Cumplimiento","nav.ejemplo":"Caso de uso","nav.cta":"Iniciar cuestionario","footer.legal":"Este sitio tiene fines informativos generales y no constituye asesoría legal, fiscal o financiera definitiva. Cada estructura societaria debe evaluarse con el apoyo de profesionales especializados, conforme a la normativa vigente de EE.UU. y del país de residencia del cliente.<br>© 2026 Virtual Cloud World LLC. Florida, EE.UU. Todos los derechos reservados.","st.eyebrow":"Tipo de entidad","st.h2":"LLC vs. C-Corporation: la decisión correcta según su objetivo","st.p":"La estructura que elija determinará su carga fiscal, privacidad y acceso a capital.","tab.llc":"LLC — Sociedad de Responsabilidad Limitada","tab.corp":"C-Corporation","cr.tax":"Tributación","cr.foreign":"Socios no residentes","cr.privacy":"Privacidad","cr.formalities":"Formalidades","cr.bestfor":"Ideal para","cr.eci":"Tratamiento ECI","llc.tax":"Transparencia fiscal (pass-through): la utilidad tributa a nivel del socio. Sin impuesto federal corporativo.","llc.foreign":"Permitido. Un ciudadano colombiano puede ser 100% propietario sin visa ni presencia física.","llc.privacy":"Alta en Wyoming y New Mexico. Los socios no son datos públicos en la mayoría de estados.","llc.formalities":"Bajas. No requiere junta directiva ni actas formales.","llc.bestfor":"Holding patrimonial, bienes raíces, servicios profesionales, e-commerce, inversiones.","llc.eci":"Sin oficina, empleados ni establecimiento fijo en EE.UU.: probablemente no genera ECI. Sin impuesto federal sobre la renta. Form 5472 + 1120 requeridos anualmente.","llc.fit":"✓ Recomendada para la mayoría de clientes de LATAM que buscan operar y proteger su patrimonio sin levantar capital institucional.","corp.tax":"Impuesto corporativo federal (21%) más impuesto a dividendos del accionista.","corp.foreign":"Permitido. Los accionistas extranjeros pueden ser propietarios completos.","corp.privacy":"Moderada. Directores pueden ser públicos según el estado.","corp.formalities":"Altas. Requiere junta directiva, accionistas y actas formales anuales.","corp.bestfor":"Startups que buscan venture capital, stock options o salida a bolsa.","corp.fit":"✓ Recomendada cuando el objetivo es levantar capital institucional o emitir acciones a empleados.","state.eyebrow":"Jurisdicción","state.h2":"¿En qué estado constituir?","state.p":"Cada estado tiene su propio régimen fiscal, nivel de privacidad y costo de mantenimiento.","st1.flag":"Capital de riesgo","st1.p":"Estándar de facto para startups e inversión institucional. Preferido por fondos de VC.","st2.flag":"Privacidad máxima","st2.p":"Sin impuesto estatal. Mayor privacidad de socios. Bajo costo de mantenimiento.","st3.flag":"Cercanía LATAM","st3.p":"Hub para negocios con Latinoamérica. Sin impuesto estatal a la renta personal.","st4.flag":"Costo mínimo","st4.p":"Los costos más bajos del país. Privacidad alta. Ideal para estructuras de arranque.","next.label":"Siguiente sección","next.proc":"Proceso y entregables","next.btn":"Continuar →"},
+  en: {"nav.home":"Home","nav.ejes":"What We Do","nav.comercial":"Commercial Operations","nav.struct":"Structures","nav.proceso":"Process","nav.comply":"Compliance","nav.ejemplo":"Use Case","nav.cta":"Start questionnaire","footer.legal":"This site is for general informational purposes only and does not constitute legal, tax, or financial advice. Each corporate structure must be evaluated with the support of qualified professionals in accordance with applicable U.S. law and the law of the client's country of residence.<br>© 2026 Virtual Cloud World LLC. Florida, U.S.A. All rights reserved.","st.eyebrow":"Entity Type","st.h2":"LLC vs. C-Corporation: the right decision for your objective","st.p":"The structure you choose will determine your tax burden, privacy, and access to capital.","tab.llc":"LLC — Limited Liability Company","tab.corp":"C-Corporation","cr.tax":"Taxation","cr.foreign":"Non-resident members","cr.privacy":"Privacy","cr.formalities":"Formalities","cr.bestfor":"Best for","cr.eci":"ECI treatment","llc.tax":"Pass-through taxation: income is reported at the member level. No federal corporate income tax.","llc.foreign":"Allowed. A Colombian citizen can be 100% owner without a visa or physical presence in the U.S.","llc.privacy":"High in Wyoming and New Mexico. Members are not public record in most states.","llc.formalities":"Low. No board of directors or formal minutes required.","llc.bestfor":"Asset holding, real estate, professional services, e-commerce, investments.","llc.eci":"Without a U.S. office, employees, or fixed place of business: likely no ECI. No U.S. federal income tax. Form 5472 + 1120 required annually.","llc.fit":"✓ Recommended for most LATAM clients seeking to operate and protect assets without raising institutional capital.","corp.tax":"Federal corporate income tax (21%) plus tax on shareholder dividends. Double taxation on distributions.","corp.foreign":"Allowed. Foreign shareholders can be full owners without residency restrictions.","corp.privacy":"Moderate. Director lists may be public depending on the state.","corp.formalities":"High. Requires board of directors, shareholders, and formal annual corporate records.","corp.bestfor":"Startups seeking venture capital, stock options, or planning to go public.","corp.fit":"✓ Recommended when the goal is to raise institutional capital or issue employee equity.","state.eyebrow":"Jurisdiction","state.h2":"Which state should you incorporate in?","state.p":"Each state has its own tax regime, privacy level, and maintenance cost.","st1.flag":"Venture capital","st1.p":"The de facto standard for startups and institutional investment. Preferred by VC funds.","st2.flag":"Maximum privacy","st2.p":"No state income tax. Highest member privacy. Low maintenance cost.","st3.flag":"LATAM gateway","st3.p":"Hub for business with Latin America. No state personal income tax.","st4.flag":"Lowest cost","st4.p":"Lowest formation and maintenance costs. High privacy. Ideal for lean structures.","next.label":"Next section","next.proc":"Process & Deliverables","next.btn":"Continue →"}
+};
+let lang = localStorage.getItem('vcw-lang') || 'es';
+function setLang(l){
+  lang = l;
+  document.documentElement.lang = l;
+  document.getElementById('btn-es').classList.toggle('active', l==='es');
+  document.getElementById('btn-en').classList.toggle('active', l==='en');
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k = el.getAttribute('data-i18n');
+    if(T[l][k] !== undefined) el.innerHTML = T[l][k];
+  });
+  localStorage.setItem('vcw-lang', l);
+}
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);} });
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+document.querySelectorAll('.comp-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.comp-tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.comp-pane').forEach(p=>p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('pane-'+tab.dataset.tab).classList.add('active');
+  });
+});
+setLang(lang);
+</script>
+</body>
+</html>

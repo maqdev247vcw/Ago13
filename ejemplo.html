@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caso de uso: LLC Florida para comercio internacional · Virtual Cloud World LLC</title>
+<meta name="description" content="Ejemplo completo: LLC Florida para buy-resell internacional. Análisis ECI, banca, privacidad y cumplimiento anual.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1B2356;--navy-deep:#10142F;--navy-mid:#232B6B;--navy-soft:#2C3570;
+  --gold:#C18A33;--gold-soft:#E0B563;--gold-pale:#F3E3C2;--gold-faint:#FBF4E6;
+  --cream:#F8F6F1;--pale-blue:#EEF0FA;--white:#fff;
+  --text:#1B2356;--muted:#5B6178;--border:#E2E4EF;
+  --green:#2A7A4B;--green-pale:#E8F5EE;--max:1100px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--cream);line-height:1.65;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;letter-spacing:-.02em;line-height:1.15;}
+a{color:inherit;text-decoration:none;}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+.eyebrow{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:9px;margin-bottom:12px;}
+.eyebrow::before{content:"";width:20px;height:1.5px;background:currentColor;}
+section{padding:80px 0;}
+@media(max-width:700px){section{padding:52px 0;}.wrap{padding:0 16px;}}
+/* NAV */
+header{position:sticky;top:0;z-index:200;background:rgba(248,246,241,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+nav.wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px;}
+.logo{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--navy);display:flex;align-items:baseline;gap:6px;flex-shrink:0;}
+.logo em{font-style:normal;font-family:'Inter',sans-serif;font-size:9px;font-weight:700;letter-spacing:.12em;color:var(--gold);border:1px solid var(--gold);padding:2px 5px;border-radius:3px;}
+.nav-links{display:flex;gap:20px;font-size:13px;font-weight:500;color:var(--muted);flex-wrap:wrap;}
+.nav-links a:hover{color:var(--navy);}
+.nav-links a.active{color:var(--navy);font-weight:700;}
+.nav-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.lang-toggle{display:flex;background:var(--pale-blue);border:1px solid var(--border);border-radius:5px;overflow:hidden;}
+.lang-btn{padding:6px 11px;cursor:pointer;border:none;background:none;font-family:inherit;font-size:11.5px;font-weight:700;color:var(--muted);transition:.15s;letter-spacing:.04em;}
+.lang-btn.active{background:var(--navy);color:#fff;}
+.nav-cta{background:var(--navy);color:#fff !important;padding:8px 16px;border-radius:5px;font-weight:600;font-size:13px;white-space:nowrap;transition:.2s;}
+.nav-cta:hover{background:var(--navy-soft);}
+@media(max-width:900px){.nav-links{display:none;}}
+/* BREADCRUMB */
+.breadcrumb{background:var(--pale-blue);border-bottom:1px solid var(--border);padding:10px 0;font-size:12.5px;color:var(--muted);}
+.breadcrumb a{color:var(--navy);font-weight:600;}
+.breadcrumb span{margin:0 6px;color:var(--border);}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:12px 22px;border-radius:5px;font-weight:600;font-size:14px;border:1px solid transparent;transition:.2s;cursor:pointer;font-family:inherit;}
+.btn-gold{background:var(--gold);color:var(--navy-deep);}
+.btn-gold:hover{background:var(--gold-soft);transform:translateY(-1px);}
+.btn-navy{background:var(--navy);color:#fff;}
+.btn-navy:hover{background:var(--navy-soft);}
+.btn-ghost{border-color:var(--border);color:var(--muted);background:var(--white);}
+.btn-ghost:hover{border-color:var(--navy);color:var(--navy);}
+/* SECTION HEAD */
+.section-head{max-width:680px;margin-bottom:40px;}
+.section-head h2{font-size:clamp(22px,3vw,34px);color:var(--navy);margin-bottom:10px;}
+.section-head p{color:var(--muted);font-size:15px;}
+/* CARDS GRID */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+@media(max-width:860px){.grid-3{grid-template-columns:1fr 1fr;}.grid-4{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}}
+.card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 22px;transition:.2s;}
+.card:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 6px 24px rgba(27,35,86,.07);}
+.card h3{font-size:17px;color:var(--navy);margin-bottom:7px;}
+.card p{font-size:13.5px;color:var(--muted);}
+/* DARK SECTION */
+.dark-section{background:var(--navy);color:#fff;padding:80px 0;}
+.dark-section .section-head h2{color:#fff;}
+.dark-section .section-head p{color:#B0B6D6;}
+.dark-section .eyebrow{color:var(--gold-soft);}
+/* CALLOUT */
+.callout{background:var(--navy);color:#fff;border-radius:12px;padding:28px 32px;margin-top:36px;display:flex;gap:14px;align-items:flex-start;}
+.callout .ic{font-size:19px;color:var(--gold-soft);flex-shrink:0;margin-top:2px;}
+.callout h4{font-size:14px;color:var(--gold-soft);margin-bottom:6px;font-family:'Inter',sans-serif;font-weight:700;}
+.callout p{font-size:13px;color:#C5C9E4;line-height:1.7;}
+/* NEXT PAGE BAR */
+.next-bar{background:var(--navy-deep);padding:28px 0;margin-top:60px;}
+.next-bar .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;}
+.next-bar p{font-size:13px;color:#9EA6D0;}
+.next-bar h4{font-size:16px;color:#fff;font-family:'Playfair Display',serif;}
+/* FOOTER */
+footer{background:var(--navy-deep);color:#6B73A0;padding:36px 0 28px;font-size:12px;}
+.foot-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;margin-bottom:20px;}
+.foot-nav{display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;}
+.foot-nav a:hover{color:var(--gold-soft);}
+.legal{border-top:1px solid rgba(255,255,255,.07);padding-top:18px;line-height:1.8;}
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+/* COMP TABLE */
+.comp-wrap{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.comp-tabs{display:flex;background:var(--pale-blue);}
+.comp-tab{flex:1;text-align:center;padding:15px 8px;font-weight:700;font-size:13.5px;color:var(--muted);cursor:pointer;border:none;border-bottom:3px solid transparent;background:none;font-family:inherit;transition:.2s;}
+.comp-tab.active{color:var(--navy);border-bottom-color:var(--gold);background:var(--white);}
+.comp-body{padding:28px;}
+.comp-pane{display:none;}
+.comp-pane.active{display:block;}
+.comp-row{display:grid;grid-template-columns:160px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);}
+.comp-row:last-child{border:none;}
+.comp-row .k{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--navy);}
+.comp-row .v{font-size:14px;color:var(--muted);}
+.comp-fit{margin-top:14px;background:var(--gold-faint);border-left:3px solid var(--gold);padding:12px 14px;border-radius:6px;font-size:14px;color:var(--navy);}
+@media(max-width:560px){.comp-row{grid-template-columns:1fr;gap:3px;}.comp-body{padding:18px;}}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="index.html" class="logo">Virtual Cloud World <em>LLC</em></a>
+    <div class="nav-links"><a href="index.html" data-i18n="nav.home">Inicio</a><a href="ejes.html" data-i18n="nav.ejes">Qué hacemos</a><a href="comercial.html" data-i18n="nav.comercial">Operación comercial</a><a href="estructuras.html" data-i18n="nav.struct">Estructuras</a><a href="proceso.html" data-i18n="nav.proceso">Proceso</a><a href="cumplimiento.html" data-i18n="nav.comply">Cumplimiento</a><a href="ejemplo.html" class="active" data-i18n="nav.ejemplo">Caso de uso</a></div>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btn-es" onclick="setLang('es')">ES</button>
+        <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+      <a href="cuestionario.html" class="nav-cta" data-i18n="nav.cta">Iniciar cuestionario</a>
+    </div>
+  </nav>
+</header>
+
+<div class="breadcrumb"><div class="wrap"><a href="index.html" data-i18n="nav.home">Inicio</a><span>›</span><span data-i18n="nav.ejemplo">Caso de uso</span></div></div>
+
+<!-- HERO del caso -->
+<section style="background:linear-gradient(135deg,#10142F 0%,#1B2356 60%,#232B6B 100%);color:#fff;padding:60px 0 50px;">
+  <div class="wrap">
+    <div class="eyebrow" style="color:#E0B563;" data-i18n="ex.eyebrow">Caso de uso documentado</div>
+    <h1 style="font-size:clamp(24px,3.8vw,40px);color:#fff;margin-bottom:14px;max-width:700px;" data-i18n="ex.h1">LLC Florida para comercio electrónico internacional: compra en EE.UU./China, venta en Colombia</h1>
+    <p style="color:#C5C9E4;font-size:15px;max-width:640px;" data-i18n="ex.lead">Este caso ilustra cómo un empresario colombiano constituye una LLC de un solo socio en Florida, la usa como vehículo para adquirir productos de proveedores en EE.UU. y China, y los revende mediante factura comercial a compradores finales en Colombia — terceros no relacionados. Analizamos el tratamiento fiscal bajo el marco ECI, la estructura bancaria, el flujo operativo y las obligaciones de cumplimiento.</p>
+  </div>
+</section>
+
+<!-- PERFIL DEL CASO -->
+<section style="background:var(--cream);">
+<div class="wrap">
+
+  <!-- Ficha del caso -->
+  <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:36px;" class="reveal">
+    <div style="background:var(--navy);padding:16px 24px;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-soft);" data-i18n="ex.ficha.tag">Ficha del caso</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;">
+      <div style="padding:20px 22px;border-right:1px solid var(--border);">
+        <div style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--gold);margin-bottom:6px;" data-i18n="ex.f1.k">Perfil del cliente</div>
+        <div style="font-size:14px;color:var(--navy);font-weight:600;" data-i18n="ex.f1.v">Persona natural colombiana, no residente en EE.UU., sin visa.</div>
+      </div>
+      <div style="padding:20px 22px;border-right:1px solid var(--border);">
+        <div style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--gold);margin-bottom:6px;" data-i18n="ex.f2.k">Estructura elegida</div>
+        <div style="font-size:14px;color:var(--navy);font-weight:600;" data-i18n="ex.f2.v">LLC de un solo socio (Single-Member LLC) en Florida. VCW como agente registrado.</div>
+      </div>
+      <div style="padding:20px 22px;">
+        <div style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--gold);margin-bottom:6px;" data-i18n="ex.f3.k">Tipo de operación</div>
+        <div style="font-size:14px;color:var(--navy);font-weight:600;" data-i18n="ex.f3.v">Compraventa internacional: compra a proveedores EE.UU./China → reventa a compradores en Colombia.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLUJO OPERATIVO -->
+  <div class="section-head reveal">
+    <div class="eyebrow" data-i18n="ex.flow.eyebrow">Flujo operativo</div>
+    <h2 data-i18n="ex.flow.h">Cómo funciona la operación paso a paso</h2>
+  </div>
+
+  <div style="position:relative;margin-bottom:40px;" class="reveal">
+    <!-- Línea conectora -->
+    <div style="position:absolute;left:28px;top:32px;bottom:32px;width:2px;background:linear-gradient(var(--gold),var(--border));z-index:0;"></div>
+
+    <div style="display:flex;gap:20px;align-items:flex-start;margin-bottom:16px;position:relative;z-index:1;">
+      <div style="width:56px;height:56px;border-radius:50%;background:var(--gold);color:var(--navy-deep);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:18px;font-weight:700;flex-shrink:0;">1</div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:18px 20px;flex:1;">
+        <h3 style="font-size:16px;color:var(--navy);margin-bottom:6px;" data-i18n="ex.fl1.h">Identificación del proveedor y orden de compra</h3>
+        <p style="font-size:13.5px;color:var(--muted);" data-i18n="ex.fl1.p">El cliente identifica proveedores en EE.UU. o China. La LLC emite una orden de compra (Purchase Order) desde su cuenta bancaria en Mercury. La LLC es la compradora legal — no el individuo colombiano.</p>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:20px;align-items:flex-start;margin-bottom:16px;position:relative;z-index:1;">
+      <div style="width:56px;height:56px;border-radius:50%;background:var(--gold);color:var(--navy-deep);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:18px;font-weight:700;flex-shrink:0;">2</div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:18px 20px;flex:1;">
+        <h3 style="font-size:16px;color:var(--navy);margin-bottom:6px;" data-i18n="ex.fl2.h">Pago al proveedor desde cuenta LLC</h3>
+        <p style="font-size:13.5px;color:var(--muted);" data-i18n="ex.fl2.p">La LLC paga al proveedor en USD desde su cuenta Mercury. Este pago es una transacción de capital o gasto operativo de la LLC — no requiere Form 5472 porque el proveedor es un tercero sin relación de propiedad con la LLC.</p>
+        <div style="margin-top:10px;background:var(--pale-blue);border-radius:6px;padding:10px 12px;font-size:12.5px;color:var(--navy);" data-i18n="ex.fl2.note">Punto clave: las transacciones con terceros no relacionados (arm's-length) no generan obligaciones de reporte de precios de transferencia ni de Form 5472.</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:20px;align-items:flex-start;margin-bottom:16px;position:relative;z-index:1;">
+      <div style="width:56px;height:56px;border-radius:50%;background:var(--gold);color:var(--navy-deep);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:18px;font-weight:700;flex-shrink:0;">3</div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:18px 20px;flex:1;">
+        <h3 style="font-size:16px;color:var(--navy);margin-bottom:6px;" data-i18n="ex.fl3.h">Recepción de mercancía y reenvío</h3>
+        <p style="font-size:13.5px;color:var(--muted);" data-i18n="ex.fl3.p">Los productos se reciben en EE.UU. (en almacén de tercero o servicio de fulfillment) o se coordinan directamente desde China al comprador final. La LLC actúa como intermediario comercial, no como importador final en Colombia.</p>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:20px;align-items:flex-start;margin-bottom:16px;position:relative;z-index:1;">
+      <div style="width:56px;height:56px;border-radius:50%;background:var(--gold);color:var(--navy-deep);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:18px;font-weight:700;flex-shrink:0;">4</div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:18px 20px;flex:1;">
+        <h3 style="font-size:16px;color:var(--navy);margin-bottom:6px;" data-i18n="ex.fl4.h">Facturación al comprador en Colombia</h3>
+        <p style="font-size:13.5px;color:var(--muted);" data-i18n="ex.fl4.p">La LLC emite factura comercial (Commercial Invoice) al comprador colombiano — un tercero sin relación de propiedad. El comprador paga a la cuenta de la LLC en USD. Esta es una transacción arm's-length pura: no hay precios de transferencia ni Form 5472 asociado a esta venta.</p>
+        <div style="margin-top:10px;background:var(--pale-blue);border-radius:6px;padding:10px 12px;font-size:12.5px;color:var(--navy);" data-i18n="ex.fl4.note">Distinción crítica: un comprador en Colombia sin relación de propiedad con la LLC no activa las reglas de partes relacionadas (related-party rules). Form 5472 aplica solo a transacciones LLC ↔ socio, no LLC ↔ clientes externos.</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:20px;align-items:flex-start;position:relative;z-index:1;">
+      <div style="width:56px;height:56px;border-radius:50%;background:var(--navy);color:var(--gold-soft);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:18px;font-weight:700;flex-shrink:0;">5</div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:18px 20px;flex:1;">
+        <h3 style="font-size:16px;color:var(--navy);margin-bottom:6px;" data-i18n="ex.fl5.h">Distribución de utilidades al socio</h3>
+        <p style="font-size:13.5px;color:var(--muted);" data-i18n="ex.fl5.p">La LLC distribuye las utilidades al socio colombiano (capital contribution, distribution o loan). Esta transacción entre la LLC y su único socio SÍ requiere reporte en Form 5472. VCW acompaña la preparación del formulario anualmente.</p>
+        <div style="margin-top:10px;background:var(--gold-pale);border-radius:6px;padding:10px 12px;font-size:12.5px;color:var(--navy);" data-i18n="ex.fl5.note">Form 5472 y Pro Forma 1120 son requeridos anualmente, independientemente de si la LLC tuvo ingresos gravables. Son formularios informativos, no declaraciones de impuesto.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANÁLISIS ECI -->
+  <div class="section-head reveal" style="margin-top:50px;">
+    <div class="eyebrow" data-i18n="ex.eci.eyebrow">Análisis fiscal</div>
+    <h2 data-i18n="ex.eci.h">Tratamiento bajo el marco ECI (Effectively Connected Income)</h2>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:24px;" class="reveal">
+    <div style="background:var(--green-pale);border:1px solid #B8DFC9;border-radius:10px;padding:22px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:10px;" data-i18n="ex.eci.no.tag">Sin ECI — Escenario típico</div>
+      <h3 style="font-size:16px;color:var(--navy);margin-bottom:8px;" data-i18n="ex.eci.no.h">La LLC probablemente NO genera ECI si:</h3>
+      <ul style="list-style:none;">
+        <li style="font-size:13px;color:var(--muted);padding:6px 0 6px 16px;position:relative;border-top:1px solid rgba(0,0,0,.06);" data-i18n="ex.eci.n1"><span style="position:absolute;left:0;color:var(--green);">✓</span> No tiene oficina ni establecimiento físico en EE.UU.</li>
+        <li style="font-size:13px;color:var(--muted);padding:6px 0 6px 16px;position:relative;border-top:1px solid rgba(0,0,0,.06);" data-i18n="ex.eci.n2"><span style="position:absolute;left:0;color:var(--green);">✓</span> No tiene empleados ni agentes dependientes en EE.UU.</li>
+        <li style="font-size:13px;color:var(--muted);padding:6px 0 6px 16px;position:relative;border-top:1px solid rgba(0,0,0,.06);" data-i18n="ex.eci.n3"><span style="position:absolute;left:0;color:var(--green);">✓</span> Los productos no se almacenan en EE.UU. (o si se almacenan, aplica excepción de inventario)</li>
+        <li style="font-size:13px;color:var(--muted);padding:6px 0 6px 16px;position:relative;border-top:1px solid rgba(0,0,0,.06);" data-i18n="ex.eci.n4"><span style="position:absolute;left:0;color:var(--green);">✓</span> Las decisiones de negocio se toman fuera de EE.UU.</li>
+      </ul>
+      <div style="margin-top:12px;background:white;border-radius:6px;padding:10px 12px;font-size:13px;font-weight:700;color:var(--green);" data-i18n="ex.eci.no.result">→ Resultado: $0 de impuesto federal sobre la renta</div>
+    </div>
+    <div style="background:var(--gold-pale);border:1px solid #DFC89A;border-radius:10px;padding:22px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7A5010;margin-bottom:10px;" data-i18n="ex.eci.yes.tag">Con ECI — Escenario que genera impuesto</div>
+      <h3 style="font-size:16px;color:var(--navy);margin-bottom:8px;" data-i18n="ex.eci.yes.h">La LLC SÍ generaría ECI si:</h3>
+      <ul style="list-style:none;">
+        <li style="font-size:13px;color:var(--muted);padding:6px 0 6px 16px;position:relative;border-top:1px solid rgba(0,0,0,.06);" data-i18n="ex.eci.y1"><span style="position:absolute;left:0;color:var(--gold);">!</span> Tiene empleados o vendedores basados en EE.UU.</li>
+        <li style="font-size:13px;color:var(--muted);padding:6px 0 6px 16px;position:relative;border-top:1px solid rgba(0,0,0,.06);" data-i18n="ex.eci.y2"><span style="position:absolute;left:0;color:var(--gold);">!</span> Opera un almacén propio o bajo su control en EE.UU.</li>
+        <li style="font-size:13px;color:var(--muted);padding:6px 0 6px 16px;position:relative;border-top:1px solid rgba(0,0,0,.06);" data-i18n="ex.eci.y3"><span style="position:absolute;left:0;color:var(--gold);">!</span> Presta servicios desde una oficina física en EE.UU.</li>
+        <li style="font-size:13px;color:var(--muted);padding:6px 0 6px 16px;position:relative;border-top:1px solid rgba(0,0,0,.06);" data-i18n="ex.eci.y4"><span style="position:absolute;left:0;color:var(--gold);">!</span> Los ingresos derivan principalmente de activos ubicados en EE.UU.</li>
+      </ul>
+      <div style="margin-top:12px;background:white;border-radius:6px;padding:10px 12px;font-size:13px;font-weight:700;color:#7A5010;" data-i18n="ex.eci.yes.result">→ Resultado: impuesto federal a tasa ordinaria sobre el ingreso ECI</div>
+    </div>
+  </div>
+
+  <div class="callout reveal">
+    <div class="ic">⚖</div>
+    <div>
+      <h4 data-i18n="ex.eci.note.h">Importante: el análisis ECI requiere evaluación caso a caso</h4>
+      <p data-i18n="ex.eci.note.p">La determinación de si una LLC genera ECI no es automática ni genérica — depende de los hechos específicos de cada operación (tipo de producto, cadena logística, rol de los agentes, lugar de toma de decisiones). VCW realiza este análisis como parte del diseño de la estructura. Este contenido es orientativo y no sustituye la asesoría fiscal especializada.</p>
+    </div>
+  </div>
+
+  <!-- PRIVACIDAD Y DATOS -->
+  <div class="section-head reveal" style="margin-top:50px;">
+    <div class="eyebrow" data-i18n="ex.priv.eyebrow">Privacidad patrimonial</div>
+    <h2 data-i18n="ex.priv.h">Qué es público y qué no lo es</h2>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;" class="reveal">
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:22px;">
+      <h3 style="font-size:15px;color:var(--navy);margin-bottom:14px;display:flex;align-items:center;gap:8px;"><span style="color:var(--muted);">👁</span> <span data-i18n="ex.pub.h">Información pública en el registro de Florida</span></h3>
+      <ul style="list-style:none;">
+        <li style="font-size:13px;color:var(--muted);padding:8px 0 8px 20px;position:relative;border-top:1px solid var(--border);" data-i18n="ex.pub.l1"><span style="position:absolute;left:0;font-size:11px;">📄</span> Nombre de la entidad LLC</li>
+        <li style="font-size:13px;color:var(--muted);padding:8px 0 8px 20px;position:relative;border-top:1px solid var(--border);" data-i18n="ex.pub.l2"><span style="position:absolute;left:0;font-size:11px;">📄</span> Nombre del agente registrado (VCW)</li>
+        <li style="font-size:13px;color:var(--muted);padding:8px 0 8px 20px;position:relative;border-top:1px solid var(--border);" data-i18n="ex.pub.l3"><span style="position:absolute;left:0;font-size:11px;">📄</span> Nombre(s) del/los socio(s) en el Annual Report</li>
+        <li style="font-size:13px;color:var(--muted);padding:8px 0 8px 20px;position:relative;border-top:1px solid var(--border);" data-i18n="ex.pub.l4"><span style="position:absolute;left:0;font-size:11px;">📄</span> Dirección del agente registrado</li>
+      </ul>
+    </div>
+    <div style="background:var(--navy);border-radius:10px;padding:22px;">
+      <h3 style="font-size:15px;color:var(--gold-soft);margin-bottom:14px;display:flex;align-items:center;gap:8px;"><span>🔒</span> <span data-i18n="ex.priv2.h">Lo que nunca es información pública</span></h3>
+      <ul style="list-style:none;">
+        <li style="font-size:13px;color:#C5C9E4;padding:8px 0 8px 20px;position:relative;border-top:1px solid rgba(255,255,255,.1);" data-i18n="ex.priv2.l1"><span style="position:absolute;left:0;color:var(--gold-soft);">✓</span> Saldos de cuentas bancarias</li>
+        <li style="font-size:13px;color:#C5C9E4;padding:8px 0 8px 20px;position:relative;border-top:1px solid rgba(255,255,255,.1);" data-i18n="ex.priv2.l2"><span style="position:absolute;left:0;color:var(--gold-soft);">✓</span> Activos de la LLC (inventario, inversiones)</li>
+        <li style="font-size:13px;color:#C5C9E4;padding:8px 0 8px 20px;position:relative;border-top:1px solid rgba(255,255,255,.1);" data-i18n="ex.priv2.l3"><span style="position:absolute;left:0;color:var(--gold-soft);">✓</span> Flujos de caja y utilidades</li>
+        <li style="font-size:13px;color:#C5C9E4;padding:8px 0 8px 20px;position:relative;border-top:1px solid rgba(255,255,255,.1);" data-i18n="ex.priv2.l4"><span style="position:absolute;left:0;color:var(--gold-soft);">✓</span> Clientes, proveedores y contratos</li>
+        <li style="font-size:13px;color:#C5C9E4;padding:8px 0 8px 20px;position:relative;border-top:1px solid rgba(255,255,255,.1);" data-i18n="ex.priv2.l5"><span style="position:absolute;left:0;color:var(--gold-soft);">✓</span> Contenido del Operating Agreement</li>
+      </ul>
+      <div style="margin-top:12px;font-size:12px;color:#9EA6D0;" data-i18n="ex.priv2.note">Nota: el banco identifica al UBO internamente (Bank Secrecy Act), pero esta información no es divulgación pública. Son contextos completamente distintos.</div>
+    </div>
+  </div>
+
+  <!-- OBLIGACIONES ANUALES -->
+  <div class="section-head reveal" style="margin-top:50px;">
+    <div class="eyebrow" data-i18n="ex.obl.eyebrow">Cumplimiento anual</div>
+    <h2 data-i18n="ex.obl.h">Obligaciones anuales de esta estructura</h2>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;" class="reveal">
+    <div class="card">
+      <div style="font-size:22px;margin-bottom:10px;">📋</div>
+      <h3 data-i18n="ex.obl.h1">Form 5472 + Pro Forma 1120</h3>
+      <p data-i18n="ex.obl.p1">Reporte informativo anual al IRS sobre transacciones entre la LLC y su socio extranjero (capital contributions, distributions, loans). Vencimiento: 15 de abril. Penalidad por no presentar: US$25,000.</p>
+    </div>
+    <div class="card">
+      <div style="font-size:22px;margin-bottom:10px;">📅</div>
+      <h3 data-i18n="ex.obl.h2">Annual Report de Florida</h3>
+      <p data-i18n="ex.obl.p2">Renovación anual ante el Departamento de Estado de Florida. Vencimiento: 1 de mayo. Costo: US$138.75. VCW lo gestiona como parte del servicio de agente registrado.</p>
+    </div>
+    <div class="card">
+      <div style="font-size:22px;margin-bottom:10px;">🔄</div>
+      <h3 data-i18n="ex.obl.h3">Actualización del dossier KYC</h3>
+      <p data-i18n="ex.obl.p3">Re-evaluación anual del perfil de riesgo del cliente, actualización de documentos vencidos (pasaporte, comprobante de domicilio) y verificación en listas de sanciones actualizadas.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div style="background:var(--navy-deep);border-radius:14px;padding:36px;margin-top:40px;text-align:center;" class="reveal">
+    <div style="font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:10px;" data-i18n="ex.cta.eyebrow">¿Su caso es similar?</div>
+    <h2 style="font-size:24px;color:#fff;margin-bottom:12px;" data-i18n="ex.cta.h">Hablemos de su estructura</h2>
+    <p style="color:#B0B6D6;font-size:15px;max-width:480px;margin:0 auto 24px;" data-i18n="ex.cta.p">Cada caso tiene particularidades. Este ejemplo ilustra un escenario típico — el suyo puede requerir ajustes. Una consulta inicial sin costo nos permite identificar la configuración exacta para usted.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="cuestionario.html" class="btn btn-gold" data-i18n="ex.cta.btn1">Iniciar cuestionario →</a>
+      <a href="mailto:info@virtualcloudworld.com?subject=Consulta%20caso%20de%20uso" class="btn btn-ghost" style="border-color:rgba(255,255,255,.3);color:#fff;" data-i18n="ex.cta.btn2">Contactar directamente</a>
+    </div>
+  </div>
+
+</div>
+</section>
+
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="logo" style="color:#fff;">Virtual Cloud World <em style="color:var(--gold-soft);border-color:var(--gold-soft);">LLC</em></div>
+      <nav class="foot-nav">
+        <a href="ejes.html" data-i18n="nav.ejes">Qué hacemos</a>
+        <a href="comercial.html" data-i18n="nav.comercial">Operación comercial</a>
+        <a href="estructuras.html" data-i18n="nav.struct">Estructuras</a>
+        <a href="proceso.html" data-i18n="nav.proceso">Proceso</a>
+        <a href="cumplimiento.html" data-i18n="nav.comply">Cumplimiento</a>
+        <a href="ejemplo.html" data-i18n="nav.ejemplo">Caso de uso</a>
+        <a href="cuestionario.html" data-i18n="nav.cta">Cuestionario</a>
+      </nav>
+    </div>
+    <div class="legal" data-i18n="footer.legal">Este sitio tiene fines informativos generales y no constituye asesoría legal, fiscal o financiera definitiva. Cada estructura societaria debe evaluarse con el apoyo de profesionales especializados, conforme a la normativa vigente de Estados Unidos y del país de residencia del cliente.<br>© 2026 Virtual Cloud World LLC. Florida, EE.UU. Todos los derechos reservados.</div>
+  </div>
+</footer>
+
+<script>
+const T = {
+  es: {"nav.home":"Inicio","nav.ejes":"Qué hacemos","nav.comercial":"Operación comercial","nav.struct":"Estructuras","nav.proceso":"Proceso","nav.comply":"Cumplimiento","nav.ejemplo":"Caso de uso","nav.cta":"Iniciar cuestionario","footer.legal":"Este sitio tiene fines informativos generales y no constituye asesoría legal, fiscal o financiera definitiva. Cada estructura societaria debe evaluarse con el apoyo de profesionales especializados, conforme a la normativa vigente de EE.UU. y del país de residencia del cliente.<br>© 2026 Virtual Cloud World LLC. Florida, EE.UU. Todos los derechos reservados.",
+"ex.eyebrow":"Caso de uso documentado",
+"ex.h1":"LLC Florida para comercio electrónico internacional: compra en EE.UU./China, venta en Colombia",
+"ex.lead":"Este caso ilustra cómo un empresario colombiano constituye una LLC en Florida, la usa para adquirir productos de proveedores en EE.UU. y China, y los revende a compradores finales en Colombia — terceros no relacionados. Analizamos el tratamiento fiscal ECI, la estructura bancaria, el flujo operativo y las obligaciones de cumplimiento.",
+"ex.ficha.tag":"Ficha del caso",
+"ex.f1.k":"Perfil del cliente","ex.f1.v":"Persona natural colombiana, no residente en EE.UU., sin visa.",
+"ex.f2.k":"Estructura elegida","ex.f2.v":"LLC de un solo socio (Single-Member LLC) en Florida. VCW como agente registrado.",
+"ex.f3.k":"Tipo de operación","ex.f3.v":"Compraventa internacional: compra a proveedores EE.UU./China → reventa a compradores en Colombia.",
+"ex.flow.eyebrow":"Flujo operativo","ex.flow.h":"Cómo funciona la operación paso a paso",
+"ex.fl1.h":"Identificación del proveedor y orden de compra","ex.fl1.p":"El cliente identifica proveedores en EE.UU. o China. La LLC emite una orden de compra desde su cuenta en Mercury. La LLC es la compradora legal — no el individuo colombiano.",
+"ex.fl2.h":"Pago al proveedor desde cuenta LLC","ex.fl2.p":"La LLC paga al proveedor en USD desde Mercury. Este pago no requiere Form 5472 porque el proveedor es un tercero sin relación de propiedad con la LLC.",
+"ex.fl2.note":"Punto clave: las transacciones con terceros no relacionados (arm's-length) no generan obligaciones de reporte de precios de transferencia ni de Form 5472.",
+"ex.fl3.h":"Recepción de mercancía y reenvío","ex.fl3.p":"Los productos se reciben en EE.UU. (almacén de tercero o fulfillment) o se coordinan directamente desde China al comprador final. La LLC actúa como intermediario comercial.",
+"ex.fl4.h":"Facturación al comprador en Colombia","ex.fl4.p":"La LLC emite factura comercial al comprador colombiano — tercero sin relación de propiedad. El comprador paga a la cuenta LLC en USD. Esta es una transacción arm's-length pura.",
+"ex.fl4.note":"Distinción crítica: un comprador en Colombia sin relación de propiedad con la LLC no activa las reglas de partes relacionadas. Form 5472 aplica solo a transacciones LLC ↔ socio.",
+"ex.fl5.h":"Distribución de utilidades al socio","ex.fl5.p":"La LLC distribuye utilidades al socio colombiano. Esta transacción entre la LLC y su socio SÍ requiere reporte en Form 5472. VCW acompaña la preparación anualmente.",
+"ex.fl5.note":"Form 5472 y Pro Forma 1120 son requeridos anualmente, independientemente de si la LLC tuvo ingresos gravables. Son formularios informativos, no declaraciones de impuesto.",
+"ex.eci.eyebrow":"Análisis fiscal","ex.eci.h":"Tratamiento bajo el marco ECI (Effectively Connected Income)",
+"ex.eci.no.tag":"Sin ECI — Escenario típico","ex.eci.no.h":"La LLC probablemente NO genera ECI si:","ex.eci.n1":"No tiene oficina ni establecimiento físico en EE.UU.","ex.eci.n2":"No tiene empleados ni agentes dependientes en EE.UU.","ex.eci.n3":"Los productos no se almacenan en EE.UU. (o aplica excepción de inventario)","ex.eci.n4":"Las decisiones de negocio se toman fuera de EE.UU.","ex.eci.no.result":"→ Resultado: $0 de impuesto federal sobre la renta",
+"ex.eci.yes.tag":"Con ECI — Escenario que genera impuesto","ex.eci.yes.h":"La LLC SÍ generaría ECI si:","ex.eci.y1":"Tiene empleados o vendedores basados en EE.UU.","ex.eci.y2":"Opera un almacén propio bajo su control en EE.UU.","ex.eci.y3":"Presta servicios desde una oficina física en EE.UU.","ex.eci.y4":"Los ingresos derivan principalmente de activos ubicados en EE.UU.","ex.eci.yes.result":"→ Resultado: impuesto federal a tasa ordinaria sobre el ingreso ECI",
+"ex.eci.note.h":"Importante: el análisis ECI requiere evaluación caso a caso","ex.eci.note.p":"La determinación de ECI depende de los hechos específicos de cada operación. VCW realiza este análisis como parte del diseño de la estructura. Este contenido es orientativo.",
+"ex.priv.eyebrow":"Privacidad patrimonial","ex.priv.h":"Qué es público y qué no lo es",
+"ex.pub.h":"Información pública en el registro de Florida","ex.pub.l1":"Nombre de la entidad LLC","ex.pub.l2":"Nombre del agente registrado (VCW)","ex.pub.l3":"Nombre(s) del/los socio(s) en el Annual Report","ex.pub.l4":"Dirección del agente registrado",
+"ex.priv2.h":"Lo que nunca es información pública","ex.priv2.l1":"Saldos de cuentas bancarias","ex.priv2.l2":"Activos de la LLC (inventario, inversiones)","ex.priv2.l3":"Flujos de caja y utilidades","ex.priv2.l4":"Clientes, proveedores y contratos","ex.priv2.l5":"Contenido del Operating Agreement","ex.priv2.note":"El banco identifica al UBO internamente (Bank Secrecy Act), pero esta información no es divulgación pública. Son contextos completamente distintos.",
+"ex.obl.eyebrow":"Cumplimiento anual","ex.obl.h":"Obligaciones anuales de esta estructura",
+"ex.obl.h1":"Form 5472 + Pro Forma 1120","ex.obl.p1":"Reporte informativo anual al IRS sobre transacciones LLC ↔ socio. Vencimiento: 15 de abril. Penalidad por no presentar: US$25,000.",
+"ex.obl.h2":"Annual Report de Florida","ex.obl.p2":"Renovación anual ante el Departamento de Estado de Florida. Vencimiento: 1 de mayo. Costo: US$138.75. VCW lo gestiona como agente registrado.",
+"ex.obl.h3":"Actualización del dossier KYC","ex.obl.p3":"Re-evaluación anual del perfil de riesgo, actualización de documentos y verificación en listas de sanciones.",
+"ex.cta.eyebrow":"¿Su caso es similar?","ex.cta.h":"Hablemos de su estructura","ex.cta.p":"Cada caso tiene particularidades. Una consulta inicial sin costo nos permite identificar la configuración exacta para usted.","ex.cta.btn1":"Iniciar cuestionario →","ex.cta.btn2":"Contactar directamente"
+},
+  en: {"nav.home":"Home","nav.ejes":"What We Do","nav.comercial":"Commercial Operations","nav.struct":"Structures","nav.proceso":"Process","nav.comply":"Compliance","nav.ejemplo":"Use Case","nav.cta":"Start questionnaire","footer.legal":"This site is for general informational purposes only and does not constitute legal, tax, or financial advice. Each corporate structure must be evaluated with the support of qualified professionals in accordance with applicable U.S. law and the law of the client's country of residence.<br>© 2026 Virtual Cloud World LLC. Florida, U.S.A. All rights reserved.",
+"ex.eyebrow":"Documented use case",
+"ex.h1":"Florida LLC for international e-commerce: buy from U.S./China suppliers, sell in Colombia",
+"ex.lead":"This case illustrates how a Colombian entrepreneur forms a Florida LLC, uses it to purchase products from U.S. and Chinese suppliers, and resells them via commercial invoice to Colombian buyers — unrelated third parties. We analyze the ECI tax framework, banking structure, operational flow, and compliance obligations.",
+"ex.ficha.tag":"Case profile",
+"ex.f1.k":"Client profile","ex.f1.v":"Colombian individual, non-U.S. resident, no visa required.",
+"ex.f2.k":"Chosen structure","ex.f2.v":"Single-Member LLC in Florida. VCW as registered agent.",
+"ex.f3.k":"Operation type","ex.f3.v":"International trade: buy from U.S./China suppliers → resell to Colombian buyers.",
+"ex.flow.eyebrow":"Operational flow","ex.flow.h":"How the operation works step by step",
+"ex.fl1.h":"Supplier identification and purchase order","ex.fl1.p":"The client identifies suppliers in the U.S. or China. The LLC issues a Purchase Order from its Mercury bank account. The LLC is the legal buyer — not the Colombian individual.",
+"ex.fl2.h":"Payment to supplier from LLC account","ex.fl2.p":"The LLC pays the supplier in USD from Mercury. This payment does not require Form 5472 because the supplier is an unrelated third party.",
+"ex.fl2.note":"Key point: transactions with unrelated third parties (arm's-length) do not trigger transfer pricing reporting obligations or Form 5472.",
+"ex.fl3.h":"Merchandise receipt and forwarding","ex.fl3.p":"Products are received in the U.S. (third-party warehouse or fulfillment) or shipped directly from China to the end buyer. The LLC acts as a commercial intermediary.",
+"ex.fl4.h":"Invoice to the Colombian buyer","ex.fl4.p":"The LLC issues a Commercial Invoice to the Colombian buyer — an unrelated third party. The buyer pays the LLC account in USD. This is a pure arm's-length transaction.",
+"ex.fl4.note":"Critical distinction: a Colombian buyer with no ownership relationship with the LLC does not trigger related-party rules. Form 5472 applies only to LLC ↔ member transactions.",
+"ex.fl5.h":"Profit distribution to the member","ex.fl5.p":"The LLC distributes profits to the Colombian member. This transaction between the LLC and its member DOES require reporting on Form 5472. VCW assists annually.",
+"ex.fl5.note":"Form 5472 and Pro Forma 1120 are required annually regardless of whether the LLC had taxable income. These are informational returns, not tax declarations.",
+"ex.eci.eyebrow":"Tax analysis","ex.eci.h":"Treatment under the ECI (Effectively Connected Income) framework",
+"ex.eci.no.tag":"No ECI — Typical scenario","ex.eci.no.h":"The LLC likely does NOT generate ECI if:","ex.eci.n1":"It has no office or physical establishment in the U.S.","ex.eci.n2":"It has no employees or dependent agents in the U.S.","ex.eci.n3":"Products are not stored in the U.S. (or the inventory exception applies)","ex.eci.n4":"Business decisions are made outside the U.S.","ex.eci.no.result":"→ Result: $0 U.S. federal income tax",
+"ex.eci.yes.tag":"With ECI — Tax-generating scenario","ex.eci.yes.h":"The LLC WOULD generate ECI if:","ex.eci.y1":"It has employees or salespeople based in the U.S.","ex.eci.y2":"It operates a warehouse under its control in the U.S.","ex.eci.y3":"It provides services from a physical office in the U.S.","ex.eci.y4":"Income derives primarily from U.S.-situs assets.","ex.eci.yes.result":"→ Result: U.S. federal income tax at ordinary rates on ECI",
+"ex.eci.note.h":"Important: ECI analysis requires case-by-case evaluation","ex.eci.note.p":"ECI determination depends on the specific facts of each operation. VCW performs this analysis as part of structure design. This content is for informational purposes only.",
+"ex.priv.eyebrow":"Patrimonial privacy","ex.priv.h":"What is public and what is not",
+"ex.pub.h":"Public information in the Florida registry","ex.pub.l1":"LLC entity name","ex.pub.l2":"Registered agent name (VCW)","ex.pub.l3":"Member name(s) on the Annual Report","ex.pub.l4":"Registered agent address",
+"ex.priv2.h":"What is never public information","ex.priv2.l1":"Bank account balances","ex.priv2.l2":"LLC assets (inventory, investments)","ex.priv2.l3":"Cash flows and profits","ex.priv2.l4":"Clients, suppliers, and contracts","ex.priv2.l5":"Operating Agreement contents","ex.priv2.note":"The bank identifies the UBO internally (Bank Secrecy Act), but this is not public disclosure. These are completely separate contexts.",
+"ex.obl.eyebrow":"Annual compliance","ex.obl.h":"Annual obligations for this structure",
+"ex.obl.h1":"Form 5472 + Pro Forma 1120","ex.obl.p1":"Annual informational return to the IRS on LLC ↔ member transactions. Deadline: April 15. Penalty for non-filing: US$25,000.",
+"ex.obl.h2":"Florida Annual Report","ex.obl.p2":"Annual renewal with the Florida Department of State. Deadline: May 1. Cost: US$138.75. VCW handles this as registered agent.",
+"ex.obl.h3":"KYC dossier update","ex.obl.p3":"Annual risk profile reassessment, expired document updates, and current sanctions list screening.",
+"ex.cta.eyebrow":"Is your case similar?","ex.cta.h":"Let us talk about your structure","ex.cta.p":"Every case has its own specifics. A no-cost initial consultation allows us to identify the exact configuration for you.","ex.cta.btn1":"Start questionnaire →","ex.cta.btn2":"Contact us directly"
+}
+};
+let lang = localStorage.getItem('vcw-lang') || 'es';
+function setLang(l){
+  lang = l;
+  document.documentElement.lang = l;
+  document.getElementById('btn-es').classList.toggle('active', l==='es');
+  document.getElementById('btn-en').classList.toggle('active', l==='en');
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k = el.getAttribute('data-i18n');
+    if(T[l][k] !== undefined) el.innerHTML = T[l][k];
+  });
+  localStorage.setItem('vcw-lang', l);
+}
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);} });
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+setLang(lang);
+</script>
+</body>
+</html>

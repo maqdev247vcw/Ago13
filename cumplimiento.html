@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KYC, AML y Due Diligence · Virtual Cloud World LLC</title>
+<meta name="description" content="Proceso de debida diligencia KYC/AML de VCW: verificación, origen de fondos, listas internacionales y dossier defensible.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1B2356;--navy-deep:#10142F;--navy-mid:#232B6B;--navy-soft:#2C3570;
+  --gold:#C18A33;--gold-soft:#E0B563;--gold-pale:#F3E3C2;--gold-faint:#FBF4E6;
+  --cream:#F8F6F1;--pale-blue:#EEF0FA;--white:#fff;
+  --text:#1B2356;--muted:#5B6178;--border:#E2E4EF;
+  --green:#2A7A4B;--green-pale:#E8F5EE;--max:1100px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--cream);line-height:1.65;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;letter-spacing:-.02em;line-height:1.15;}
+a{color:inherit;text-decoration:none;}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+.eyebrow{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:9px;margin-bottom:12px;}
+.eyebrow::before{content:"";width:20px;height:1.5px;background:currentColor;}
+section{padding:80px 0;}
+@media(max-width:700px){section{padding:52px 0;}.wrap{padding:0 16px;}}
+/* NAV */
+header{position:sticky;top:0;z-index:200;background:rgba(248,246,241,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+nav.wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px;}
+.logo{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--navy);display:flex;align-items:baseline;gap:6px;flex-shrink:0;}
+.logo em{font-style:normal;font-family:'Inter',sans-serif;font-size:9px;font-weight:700;letter-spacing:.12em;color:var(--gold);border:1px solid var(--gold);padding:2px 5px;border-radius:3px;}
+.nav-links{display:flex;gap:20px;font-size:13px;font-weight:500;color:var(--muted);flex-wrap:wrap;}
+.nav-links a:hover{color:var(--navy);}
+.nav-links a.active{color:var(--navy);font-weight:700;}
+.nav-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.lang-toggle{display:flex;background:var(--pale-blue);border:1px solid var(--border);border-radius:5px;overflow:hidden;}
+.lang-btn{padding:6px 11px;cursor:pointer;border:none;background:none;font-family:inherit;font-size:11.5px;font-weight:700;color:var(--muted);transition:.15s;letter-spacing:.04em;}
+.lang-btn.active{background:var(--navy);color:#fff;}
+.nav-cta{background:var(--navy);color:#fff !important;padding:8px 16px;border-radius:5px;font-weight:600;font-size:13px;white-space:nowrap;transition:.2s;}
+.nav-cta:hover{background:var(--navy-soft);}
+@media(max-width:900px){.nav-links{display:none;}}
+/* BREADCRUMB */
+.breadcrumb{background:var(--pale-blue);border-bottom:1px solid var(--border);padding:10px 0;font-size:12.5px;color:var(--muted);}
+.breadcrumb a{color:var(--navy);font-weight:600;}
+.breadcrumb span{margin:0 6px;color:var(--border);}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:12px 22px;border-radius:5px;font-weight:600;font-size:14px;border:1px solid transparent;transition:.2s;cursor:pointer;font-family:inherit;}
+.btn-gold{background:var(--gold);color:var(--navy-deep);}
+.btn-gold:hover{background:var(--gold-soft);transform:translateY(-1px);}
+.btn-navy{background:var(--navy);color:#fff;}
+.btn-navy:hover{background:var(--navy-soft);}
+.btn-ghost{border-color:var(--border);color:var(--muted);background:var(--white);}
+.btn-ghost:hover{border-color:var(--navy);color:var(--navy);}
+/* SECTION HEAD */
+.section-head{max-width:680px;margin-bottom:40px;}
+.section-head h2{font-size:clamp(22px,3vw,34px);color:var(--navy);margin-bottom:10px;}
+.section-head p{color:var(--muted);font-size:15px;}
+/* CARDS GRID */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+@media(max-width:860px){.grid-3{grid-template-columns:1fr 1fr;}.grid-4{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}}
+.card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 22px;transition:.2s;}
+.card:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 6px 24px rgba(27,35,86,.07);}
+.card h3{font-size:17px;color:var(--navy);margin-bottom:7px;}
+.card p{font-size:13.5px;color:var(--muted);}
+/* DARK SECTION */
+.dark-section{background:var(--navy);color:#fff;padding:80px 0;}
+.dark-section .section-head h2{color:#fff;}
+.dark-section .section-head p{color:#B0B6D6;}
+.dark-section .eyebrow{color:var(--gold-soft);}
+/* CALLOUT */
+.callout{background:var(--navy);color:#fff;border-radius:12px;padding:28px 32px;margin-top:36px;display:flex;gap:14px;align-items:flex-start;}
+.callout .ic{font-size:19px;color:var(--gold-soft);flex-shrink:0;margin-top:2px;}
+.callout h4{font-size:14px;color:var(--gold-soft);margin-bottom:6px;font-family:'Inter',sans-serif;font-weight:700;}
+.callout p{font-size:13px;color:#C5C9E4;line-height:1.7;}
+/* NEXT PAGE BAR */
+.next-bar{background:var(--navy-deep);padding:28px 0;margin-top:60px;}
+.next-bar .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;}
+.next-bar p{font-size:13px;color:#9EA6D0;}
+.next-bar h4{font-size:16px;color:#fff;font-family:'Playfair Display',serif;}
+/* FOOTER */
+footer{background:var(--navy-deep);color:#6B73A0;padding:36px 0 28px;font-size:12px;}
+.foot-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;margin-bottom:20px;}
+.foot-nav{display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;}
+.foot-nav a:hover{color:var(--gold-soft);}
+.legal{border-top:1px solid rgba(255,255,255,.07);padding-top:18px;line-height:1.8;}
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+/* COMP TABLE */
+.comp-wrap{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.comp-tabs{display:flex;background:var(--pale-blue);}
+.comp-tab{flex:1;text-align:center;padding:15px 8px;font-weight:700;font-size:13.5px;color:var(--muted);cursor:pointer;border:none;border-bottom:3px solid transparent;background:none;font-family:inherit;transition:.2s;}
+.comp-tab.active{color:var(--navy);border-bottom-color:var(--gold);background:var(--white);}
+.comp-body{padding:28px;}
+.comp-pane{display:none;}
+.comp-pane.active{display:block;}
+.comp-row{display:grid;grid-template-columns:160px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);}
+.comp-row:last-child{border:none;}
+.comp-row .k{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--navy);}
+.comp-row .v{font-size:14px;color:var(--muted);}
+.comp-fit{margin-top:14px;background:var(--gold-faint);border-left:3px solid var(--gold);padding:12px 14px;border-radius:6px;font-size:14px;color:var(--navy);}
+@media(max-width:560px){.comp-row{grid-template-columns:1fr;gap:3px;}.comp-body{padding:18px;}}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="index.html" class="logo">Virtual Cloud World <em>LLC</em></a>
+    <div class="nav-links"><a href="index.html" data-i18n="nav.home">Inicio</a><a href="ejes.html" data-i18n="nav.ejes">Qué hacemos</a><a href="comercial.html" data-i18n="nav.comercial">Operación comercial</a><a href="estructuras.html" data-i18n="nav.struct">Estructuras</a><a href="proceso.html" data-i18n="nav.proceso">Proceso</a><a href="cumplimiento.html" class="active" data-i18n="nav.comply">Cumplimiento</a><a href="ejemplo.html" data-i18n="nav.ejemplo">Caso de uso</a></div>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btn-es" onclick="setLang('es')">ES</button>
+        <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+      <a href="cuestionario.html" class="nav-cta" data-i18n="nav.cta">Iniciar cuestionario</a>
+    </div>
+  </nav>
+</header>
+
+<div class="breadcrumb"><div class="wrap"><a href="index.html" data-i18n="nav.home">Inicio</a><span>›</span><span data-i18n="nav.comply">Cumplimiento</span></div></div>
+<section>
+<div class="wrap">
+  <div class="section-head reveal">
+    <div class="eyebrow" data-i18n="k.eyebrow">Cumplimiento</div>
+    <h2 data-i18n="k.h2">KYC, AML y Due Diligence en cada etapa</h2>
+    <p data-i18n="k.p">El proceso de cumplimiento no es un obstáculo — es un activo. Un dossier bien construido abre puertas en bancos, brokers e instituciones internacionales.</p>
+  </div>
+  <div class="grid-4 reveal">
+    <div class="card"><div style="font-size:22px;margin-bottom:10px;">🪪</div><h3 data-i18n="k.h1">Verificación de identidad</h3><p data-i18n="k.p1">Validación de identidad y beneficiarios finales (UBO), conforme a estándares FATF y las guías del GAFI para entidades de LATAM.</p></div>
+    <div class="card"><div style="font-size:22px;margin-bottom:10px;">🔍</div><h3 data-i18n="k.h2">Origen de fondos</h3><p data-i18n="k.p2">Análisis y documentación del origen lícito de los recursos que ingresarán a la estructura, con soporte documental verificable.</p></div>
+    <div class="card"><div style="font-size:22px;margin-bottom:10px;">🌐</div><h3 data-i18n="k.h3">Listas internacionales</h3><p data-i18n="k.p3">Verificación en OFAC SDN, Lista Consolidada ONU, Mapa de Sanciones UE y bases de datos PEP internacionales.</p></div>
+    <div class="card"><div style="font-size:22px;margin-bottom:10px;">₿</div><h3 data-i18n="k.h4">Trazabilidad cripto</h3><p data-i18n="k.p4">Para clientes con criptoactivos: análisis de direcciones de wallet y hashes de transacción para confirmar origen limpio de fondos digitales.</p></div>
+    <div class="card"><div style="font-size:22px;margin-bottom:10px;">📊</div><h3 data-i18n="k.h5">Clasificación de riesgo</h3><p data-i18n="k.p5">Perfil de riesgo documentado (Bajo / Medio / Alto) con aplicación del principio de cuatro ojos — revisión por dos analistas antes de la clasificación final.</p></div>
+    <div class="card"><div style="font-size:22px;margin-bottom:10px;">🗂</div><h3 data-i18n="k.h6">Dossier de cumplimiento</h3><p data-i18n="k.p6">Informe consolidado que el cliente puede presentar ante bancos, brokers e instituciones como respaldo formal de su debida diligencia.</p></div>
+    <div class="card"><div style="font-size:22px;margin-bottom:10px;">🔄</div><h3 data-i18n="k.h7">Monitoreo continuo</h3><p data-i18n="k.p7">Seguimiento de alertas regulatorias, cambios en listas de sanciones y re-evaluación periódica del perfil de riesgo del cliente.</p></div>
+    <div class="card"><div style="font-size:22px;margin-bottom:10px;">📋</div><h3 data-i18n="k.h8">Documentación defensible</h3><p data-i18n="k.p8">Cada paso queda registrado en un expediente estructurado, auditable y reproducible ante cualquier autoridad regulatoria.</p></div>
+  </div>
+
+  <div class="callout reveal">
+    <div class="ic">ⓘ</div>
+    <div>
+      <h4 data-i18n="k.reg.h">Marco regulatorio vigente — julio 2026</h4>
+      <p data-i18n="k.reg.p"><strong>BOI / CTA (FinCEN):</strong> bajo la regla interina de 2025, las entidades constituidas en EE.UU. están temporalmente exentas de reportar beneficiarios finales a FinCEN. La obligación aplica hoy solo a entidades extranjeras registradas para operar en EE.UU. El marco está sujeto a cambios.<br><br><strong>Obligaciones fiscales federales:</strong> EIN obligatorio. LLC con único socio extranjero debe presentar declaraciones informativas anuales ante el IRS (Forms 5472 + Pro Forma 1120). Los impuestos estatales varían según la jurisdicción elegida.<br><br>Este contenido es de carácter orientativo y no constituye asesoría legal o fiscal definitiva.</p>
+    </div>
+  </div>
+</div>
+</section>
+<div class="next-bar"><div class="wrap"><div><p data-i18n="next.label">Siguiente sección</p><h4 data-i18n="next.ejemplo">Caso de uso: comercio internacional</h4></div><a href="ejemplo.html" class="btn btn-gold" data-i18n="next.btn">Continuar →</a></div></div>
+
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="logo" style="color:#fff;">Virtual Cloud World <em style="color:var(--gold-soft);border-color:var(--gold-soft);">LLC</em></div>
+      <nav class="foot-nav">
+        <a href="ejes.html" data-i18n="nav.ejes">Qué hacemos</a>
+        <a href="comercial.html" data-i18n="nav.comercial">Operación comercial</a>
+        <a href="estructuras.html" data-i18n="nav.struct">Estructuras</a>
+        <a href="proceso.html" data-i18n="nav.proceso">Proceso</a>
+        <a href="cumplimiento.html" data-i18n="nav.comply">Cumplimiento</a>
+        <a href="ejemplo.html" data-i18n="nav.ejemplo">Caso de uso</a>
+        <a href="cuestionario.html" data-i18n="nav.cta">Cuestionario</a>
+      </nav>
+    </div>
+    <div class="legal" data-i18n="footer.legal">Este sitio tiene fines informativos generales y no constituye asesoría legal, fiscal o financiera definitiva. Cada estructura societaria debe evaluarse con el apoyo de profesionales especializados, conforme a la normativa vigente de Estados Unidos y del país de residencia del cliente.<br>© 2026 Virtual Cloud World LLC. Florida, EE.UU. Todos los derechos reservados.</div>
+  </div>
+</footer>
+
+<script>
+const T = {
+  es: {"nav.home":"Inicio","nav.ejes":"Qué hacemos","nav.comercial":"Operación comercial","nav.struct":"Estructuras","nav.proceso":"Proceso","nav.comply":"Cumplimiento","nav.ejemplo":"Caso de uso","nav.cta":"Iniciar cuestionario","footer.legal":"Este sitio tiene fines informativos generales y no constituye asesoría legal, fiscal o financiera definitiva. Cada estructura societaria debe evaluarse con el apoyo de profesionales especializados, conforme a la normativa vigente de EE.UU. y del país de residencia del cliente.<br>© 2026 Virtual Cloud World LLC. Florida, EE.UU. Todos los derechos reservados.","k.eyebrow":"Cumplimiento","k.h2":"KYC, AML y Due Diligence en cada etapa","k.p":"El proceso de cumplimiento es un activo. Un dossier bien construido abre puertas en bancos, brokers e instituciones internacionales.","k.h1":"Verificación de identidad","k.p1":"Validación de identidad y UBO conforme a estándares FATF y guías del GAFI para entidades de LATAM.","k.h2":"Origen de fondos","k.p2":"Análisis y documentación del origen lícito de los recursos con soporte documental verificable.","k.h3":"Listas internacionales","k.p3":"Verificación en OFAC SDN, Lista Consolidada ONU, Mapa de Sanciones UE y bases PEP.","k.h4":"Trazabilidad cripto","k.p4":"Análisis de direcciones de wallet y hashes de transacción para confirmar origen limpio de fondos digitales.","k.h5":"Clasificación de riesgo","k.p5":"Perfil Bajo / Medio / Alto con principio de cuatro ojos — revisión por dos analistas antes de la clasificación final.","k.h6":"Dossier de cumplimiento","k.p6":"Informe consolidado que el cliente presenta ante bancos, brokers e instituciones como respaldo formal.","k.h7":"Monitoreo continuo","k.p7":"Seguimiento de alertas, cambios en listas de sanciones y re-evaluación periódica del perfil de riesgo.","k.h8":"Documentación defensible","k.p8":"Expediente estructurado, auditable y reproducible ante cualquier autoridad regulatoria.","k.reg.h":"Marco regulatorio vigente — julio 2026","k.reg.p":"<strong>BOI / CTA (FinCEN):</strong> bajo la regla interina de 2025, las entidades en EE.UU. están temporalmente exentas de reportar UBOs a FinCEN. El marco está sujeto a cambios.<br><br><strong>Obligaciones federales:</strong> EIN obligatorio. LLC con socio extranjero debe presentar Forms 5472 + 1120 anualmente. Impuestos estatales según jurisdicción.<br><br>Contenido orientativo. No constituye asesoría legal o fiscal definitiva.","next.label":"Siguiente sección","next.ejemplo":"Caso de uso: comercio internacional","next.btn":"Continuar →"},
+  en: {"nav.home":"Home","nav.ejes":"What We Do","nav.comercial":"Commercial Operations","nav.struct":"Structures","nav.proceso":"Process","nav.comply":"Compliance","nav.ejemplo":"Use Case","nav.cta":"Start questionnaire","footer.legal":"This site is for general informational purposes only and does not constitute legal, tax, or financial advice. Each corporate structure must be evaluated with the support of qualified professionals in accordance with applicable U.S. law and the law of the client's country of residence.<br>© 2026 Virtual Cloud World LLC. Florida, U.S.A. All rights reserved.","k.eyebrow":"Compliance","k.h2":"KYC, AML, and Due Diligence at every stage","k.p":"The compliance process is an asset. A well-built dossier opens doors at banks, brokers, and international institutions.","k.h1":"Identity verification","k.p1":"Identity and UBO validation in line with FATF standards and GAFI guidelines for LATAM entities.","k.h2":"Source of funds","k.p2":"Analysis and documentation of the lawful origin of funds entering the structure, with verifiable documentary support.","k.h3":"International sanctions lists","k.p3":"Screening against OFAC SDN, UN Consolidated List, EU Sanctions Map, and international PEP databases.","k.h4":"Crypto traceability","k.p4":"Wallet address and transaction hash analysis to confirm clean origin of digital funds.","k.h5":"Risk classification","k.p5":"Documented risk profile (Low / Medium / High) with four-eyes principle — review by two analysts before final classification.","k.h6":"Compliance dossier","k.p6":"Consolidated report the client presents to banks, brokers, and institutions as formal due diligence evidence.","k.h7":"Ongoing monitoring","k.p7":"Regulatory alert tracking, sanctions list changes, and periodic risk profile reassessment.","k.h8":"Defensible documentation","k.p8":"Structured, auditable file reproducible before any regulatory authority.","k.reg.h":"Regulatory framework — July 2026","k.reg.p":"<strong>BOI / CTA (FinCEN):</strong> Under the 2025 interim rule, U.S.-formed entities are temporarily exempt from reporting UBOs to FinCEN. This framework is subject to change.<br><br><strong>Federal tax obligations:</strong> EIN required. LLC with a single foreign member must file Forms 5472 + 1120 annually. State taxes vary by jurisdiction.<br><br>For informational purposes only. Does not constitute legal or tax advice.","next.label":"Next section","next.ejemplo":"Use case: international trade","next.btn":"Continue →"}
+};
+let lang = localStorage.getItem('vcw-lang') || 'es';
+function setLang(l){
+  lang = l;
+  document.documentElement.lang = l;
+  document.getElementById('btn-es').classList.toggle('active', l==='es');
+  document.getElementById('btn-en').classList.toggle('active', l==='en');
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k = el.getAttribute('data-i18n');
+    if(T[l][k] !== undefined) el.innerHTML = T[l][k];
+  });
+  localStorage.setItem('vcw-lang', l);
+}
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);} });
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+setLang(lang);
+</script>
+</body>
+</html>

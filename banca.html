@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Banca, valores y cripto · Virtual Cloud World LLC</title>
+<meta name="description" content="Acceso al sistema financiero internacional: Mercury, Brex, Coinbase, brokers FINRA/SEC desde su LLC.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1B2356;--navy-deep:#10142F;--navy-mid:#232B6B;--navy-soft:#2C3570;
+  --gold:#C18A33;--gold-soft:#E0B563;--gold-pale:#F3E3C2;--gold-faint:#FBF4E6;
+  --cream:#F8F6F1;--pale-blue:#EEF0FA;--white:#fff;
+  --text:#1B2356;--muted:#5B6178;--border:#E2E4EF;
+  --green:#2A7A4B;--green-pale:#E8F5EE;--max:1100px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--cream);line-height:1.65;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;letter-spacing:-.02em;line-height:1.15;}
+a{color:inherit;text-decoration:none;}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+.eyebrow{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:9px;margin-bottom:12px;}
+.eyebrow::before{content:"";width:20px;height:1.5px;background:currentColor;}
+section{padding:80px 0;}
+@media(max-width:700px){section{padding:52px 0;}.wrap{padding:0 16px;}}
+/* NAV */
+header{position:sticky;top:0;z-index:200;background:rgba(248,246,241,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+nav.wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px;}
+.logo{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--navy);display:flex;align-items:baseline;gap:6px;flex-shrink:0;}
+.logo em{font-style:normal;font-family:'Inter',sans-serif;font-size:9px;font-weight:700;letter-spacing:.12em;color:var(--gold);border:1px solid var(--gold);padding:2px 5px;border-radius:3px;}
+.nav-links{display:flex;gap:20px;font-size:13px;font-weight:500;color:var(--muted);flex-wrap:wrap;}
+.nav-links a:hover{color:var(--navy);}
+.nav-links a.active{color:var(--navy);font-weight:700;}
+.nav-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.lang-toggle{display:flex;background:var(--pale-blue);border:1px solid var(--border);border-radius:5px;overflow:hidden;}
+.lang-btn{padding:6px 11px;cursor:pointer;border:none;background:none;font-family:inherit;font-size:11.5px;font-weight:700;color:var(--muted);transition:.15s;letter-spacing:.04em;}
+.lang-btn.active{background:var(--navy);color:#fff;}
+.nav-cta{background:var(--navy);color:#fff !important;padding:8px 16px;border-radius:5px;font-weight:600;font-size:13px;white-space:nowrap;transition:.2s;}
+.nav-cta:hover{background:var(--navy-soft);}
+@media(max-width:900px){.nav-links{display:none;}}
+/* BREADCRUMB */
+.breadcrumb{background:var(--pale-blue);border-bottom:1px solid var(--border);padding:10px 0;font-size:12.5px;color:var(--muted);}
+.breadcrumb a{color:var(--navy);font-weight:600;}
+.breadcrumb span{margin:0 6px;color:var(--border);}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:12px 22px;border-radius:5px;font-weight:600;font-size:14px;border:1px solid transparent;transition:.2s;cursor:pointer;font-family:inherit;}
+.btn-gold{background:var(--gold);color:var(--navy-deep);}
+.btn-gold:hover{background:var(--gold-soft);transform:translateY(-1px);}
+.btn-navy{background:var(--navy);color:#fff;}
+.btn-navy:hover{background:var(--navy-soft);}
+.btn-ghost{border-color:var(--border);color:var(--muted);background:var(--white);}
+.btn-ghost:hover{border-color:var(--navy);color:var(--navy);}
+/* SECTION HEAD */
+.section-head{max-width:680px;margin-bottom:40px;}
+.section-head h2{font-size:clamp(22px,3vw,34px);color:var(--navy);margin-bottom:10px;}
+.section-head p{color:var(--muted);font-size:15px;}
+/* CARDS GRID */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+@media(max-width:860px){.grid-3{grid-template-columns:1fr 1fr;}.grid-4{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}}
+.card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 22px;transition:.2s;}
+.card:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 6px 24px rgba(27,35,86,.07);}
+.card h3{font-size:17px;color:var(--navy);margin-bottom:7px;}
+.card p{font-size:13.5px;color:var(--muted);}
+/* DARK SECTION */
+.dark-section{background:var(--navy);color:#fff;padding:80px 0;}
+.dark-section .section-head h2{color:#fff;}
+.dark-section .section-head p{color:#B0B6D6;}
+.dark-section .eyebrow{color:var(--gold-soft);}
+/* CALLOUT */
+.callout{background:var(--navy);color:#fff;border-radius:12px;padding:28px 32px;margin-top:36px;display:flex;gap:14px;align-items:flex-start;}
+.callout .ic{font-size:19px;color:var(--gold-soft);flex-shrink:0;margin-top:2px;}
+.callout h4{font-size:14px;color:var(--gold-soft);margin-bottom:6px;font-family:'Inter',sans-serif;font-weight:700;}
+.callout p{font-size:13px;color:#C5C9E4;line-height:1.7;}
+/* NEXT PAGE BAR */
+.next-bar{background:var(--navy-deep);padding:28px 0;margin-top:60px;}
+.next-bar .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;}
+.next-bar p{font-size:13px;color:#9EA6D0;}
+.next-bar h4{font-size:16px;color:#fff;font-family:'Playfair Display',serif;}
+/* FOOTER */
+footer{background:var(--navy-deep);color:#6B73A0;padding:36px 0 28px;font-size:12px;}
+.foot-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;margin-bottom:20px;}
+.foot-nav{display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;}
+.foot-nav a:hover{color:var(--gold-soft);}
+.legal{border-top:1px solid rgba(255,255,255,.07);padding-top:18px;line-height:1.8;}
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+/* COMP TABLE */
+.comp-wrap{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.comp-tabs{display:flex;background:var(--pale-blue);}
+.comp-tab{flex:1;text-align:center;padding:15px 8px;font-weight:700;font-size:13.5px;color:var(--muted);cursor:pointer;border:none;border-bottom:3px solid transparent;background:none;font-family:inherit;transition:.2s;}
+.comp-tab.active{color:var(--navy);border-bottom-color:var(--gold);background:var(--white);}
+.comp-body{padding:28px;}
+.comp-pane{display:none;}
+.comp-pane.active{display:block;}
+.comp-row{display:grid;grid-template-columns:160px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);}
+.comp-row:last-child{border:none;}
+.comp-row .k{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--navy);}
+.comp-row .v{font-size:14px;color:var(--muted);}
+.comp-fit{margin-top:14px;background:var(--gold-faint);border-left:3px solid var(--gold);padding:12px 14px;border-radius:6px;font-size:14px;color:var(--navy);}
+@media(max-width:560px){.comp-row{grid-template-columns:1fr;gap:3px;}.comp-body{padding:18px;}}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="index.html" class="logo">Virtual Cloud World <em>LLC</em></a>
+    <div class="nav-links"><a href="index.html" data-i18n="nav.home">Inicio</a><a href="ejes.html" data-i18n="nav.ejes">Qué hacemos</a><a href="comercial.html" data-i18n="nav.comercial">Operación comercial</a><a href="estructuras.html" data-i18n="nav.struct">Estructuras</a><a href="proceso.html" data-i18n="nav.proceso">Proceso</a><a href="cumplimiento.html" data-i18n="nav.comply">Cumplimiento</a><a href="ejemplo.html" data-i18n="nav.ejemplo">Caso de uso</a></div>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btn-es" onclick="setLang('es')">ES</button>
+        <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+      <a href="cuestionario.html" class="nav-cta" data-i18n="nav.cta">Iniciar cuestionario</a>
+    </div>
+  </nav>
+</header>
+
+<div class="breadcrumb"><div class="wrap"><a href="index.html" data-i18n="nav.home">Inicio</a><span>›</span><span data-i18n="nav.banca">Banca, valores y cripto</span></div></div>
+<section style="background:var(--pale-blue);">
+<div class="wrap">
+  <div class="section-head reveal">
+    <div class="eyebrow" data-i18n="b.eyebrow">Acceso financiero</div>
+    <h2 data-i18n="b.h2">Banca, valores y criptoactivos</h2>
+    <p data-i18n="b.p">Una entidad en EE.UU. abre el acceso al sistema financiero internacional — tanto tradicional como digital. Le ayudamos a navegar cada plataforma según su perfil.</p>
+  </div>
+
+  <div class="grid-2 reveal" style="margin-bottom:32px;">
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:28px;">
+      <h3 style="font-size:18px;color:var(--navy);margin-bottom:16px;" data-i18n="b.trad.h">🏛 Sistema financiero tradicional</h3>
+      <div style="margin-bottom:12px;padding:12px;background:var(--pale-blue);border-radius:8px;">
+        <div style="font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;">Mercury</div>
+        <p style="font-size:13px;color:var(--muted);" data-i18n="b.mercury">Fintech bancaria preferida para LLC de founders latinoamericanos. Apertura 100% remota, sin visita física a EE.UU. Cuenta en USD, tarjeta corporativa, integraciones con Stripe y QuickBooks.</p>
+      </div>
+      <div style="margin-bottom:12px;padding:12px;background:var(--pale-blue);border-radius:8px;">
+        <div style="font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;">Relay</div>
+        <p style="font-size:13px;color:var(--muted);" data-i18n="b.relay">Banca business con múltiples cuentas y tarjetas, ideal para separar flujos por proyecto o cliente. Apertura remota disponible para no residentes.</p>
+      </div>
+      <div style="padding:12px;background:var(--pale-blue);border-radius:8px;">
+        <div style="font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;">Brex / Wise Business</div>
+        <p style="font-size:13px;color:var(--muted);" data-i18n="b.brex">Brex para gastos corporativos y líneas de crédito. Wise Business para pagos multidivisa internacionales de bajo costo. Complementarios a la cuenta principal.</p>
+      </div>
+    </div>
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:28px;">
+      <h3 style="font-size:18px;color:var(--navy);margin-bottom:16px;" data-i18n="b.crypto.h">₿ Activos digitales y criptomonedas</h3>
+      <div style="margin-bottom:12px;padding:12px;background:var(--pale-blue);border-radius:8px;">
+        <div style="font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;">Coinbase Institutional</div>
+        <p style="font-size:13px;color:var(--muted);" data-i18n="b.coinbase">Custodia y trading institucional. Regulado en EE.UU. Acepta entidades corporativas con dossier KYC/AML robusto. Ideal para volúmenes altos.</p>
+      </div>
+      <div style="margin-bottom:12px;padding:12px;background:var(--pale-blue);border-radius:8px;">
+        <div style="font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;">Kraken Pro</div>
+        <p style="font-size:13px;color:var(--muted);" data-i18n="b.kraken">Exchange regulado con cuentas corporativas. Fuerte en Europa y EE.UU. Acepta no residentes con estructura LLC debidamente constituida.</p>
+      </div>
+      <div style="padding:12px;background:var(--pale-blue);border-radius:8px;">
+        <div style="font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;">Custodia y Circle/USDC</div>
+        <p style="font-size:13px;color:var(--muted);" data-i18n="b.circle">Circle para emisión y redención de USDC (stablecoin regulada). Fireblocks para custodia institucional de alto nivel. Accesibles desde estructura LLC con dossier completo.</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:28px 32px;" class="reveal">
+    <h3 style="font-size:18px;color:var(--navy);margin-bottom:16px;" data-i18n="b.brokers.h">📈 Brokers de valores regulados por FINRA/SEC</h3>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:16px;" data-i18n="b.brokers.p">Una LLC con EIN permite acceder a cuentas de inversión en brokers regulados de EE.UU., con acceso a bolsas de valores, ETFs, bonos del Tesoro y mercados de opciones — desde fuera de EE.UU.</p>
+    <div class="grid-3">
+      <div style="padding:14px;background:var(--pale-blue);border-radius:8px;text-align:center;"><div style="font-weight:700;color:var(--navy);margin-bottom:4px;">Interactive Brokers</div><div style="font-size:12px;color:var(--muted);" data-i18n="b.ib">Acceso a 150+ mercados. Tarifa más baja del mercado. Acepta entidades extranjeras con LLC en EE.UU.</div></div>
+      <div style="padding:14px;background:var(--pale-blue);border-radius:8px;text-align:center;"><div style="font-weight:700;color:var(--navy);margin-bottom:4px;">TD Ameritrade / Schwab</div><div style="font-size:12px;color:var(--muted);" data-i18n="b.tdsch">Plataformas robustas para inversión a largo plazo, fondos y renta fija. Cuentas corporativas disponibles.</div></div>
+      <div style="padding:14px;background:var(--pale-blue);border-radius:8px;text-align:center;"><div style="font-weight:700;color:var(--navy);margin-bottom:4px;">Fidelity Business</div><div style="font-size:12px;color:var(--muted);" data-i18n="b.fid">Fuerte en fondos de inversión y planificación de largo plazo. Acepta cuentas corporativas LLC con documentación completa.</div></div>
+    </div>
+  </div>
+
+  <div class="callout reveal">
+    <div class="ic">⚠</div>
+    <div>
+      <h4 data-i18n="b.note.h">Nota importante sobre apertura bancaria</h4>
+      <p data-i18n="b.note.p">Los requisitos de cada plataforma cambian con frecuencia. VCW trabaja directamente con cada institución para conocer los requisitos actuales para clientes no residentes. Nuestro dossier KYC/AML está diseñado específicamente para cumplir con los estándares de estas plataformas. No garantizamos la aprobación de ninguna cuenta — pero sí maximizamos las probabilidades de éxito del proceso.</p>
+    </div>
+  </div>
+</div>
+</section>
+<div class="next-bar"><div class="wrap"><div><p data-i18n="next.label">Siguiente sección</p><h4 data-i18n="next.comply">KYC, AML y Due Diligence</h4></div><a href="cumplimiento.html" class="btn btn-gold" data-i18n="next.btn">Continuar →</a></div></div>
+
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="logo" style="color:#fff;">Virtual Cloud World <em style="color:var(--gold-soft);border-color:var(--gold-soft);">LLC</em></div>
+      <nav class="foot-nav">
+        <a href="ejes.html" data-i18n="nav.ejes">Qué hacemos</a>
+        <a href="comercial.html" data-i18n="nav.comercial">Operación comercial</a>
+        <a href="estructuras.html" data-i18n="nav.struct">Estructuras</a>
+        <a href="proceso.html" data-i18n="nav.proceso">Proceso</a>
+        <a href="cumplimiento.html" data-i18n="nav.comply">Cumplimiento</a>
+        <a href="ejemplo.html" data-i18n="nav.ejemplo">Caso de uso</a>
+        <a href="cuestionario.html" data-i18n="nav.cta">Cuestionario</a>
+      </nav>
+    </div>
+    <div class="legal" data-i18n="footer.legal">Este sitio tiene fines informativos generales y no constituye asesoría legal, fiscal o financiera definitiva. Cada estructura societaria debe evaluarse con el apoyo de profesionales especializados, conforme a la normativa vigente de Estados Unidos y del país de residencia del cliente.<br>© 2026 Virtual Cloud World LLC. Florida, EE.UU. Todos los derechos reservados.</div>
+  </div>
+</footer>
+
+<script>
+const T = {
+  es: {"nav.home":"Inicio","nav.ejes":"Qué hacemos","nav.comercial":"Operación comercial","nav.struct":"Estructuras","nav.proceso":"Proceso","nav.comply":"Cumplimiento","nav.ejemplo":"Caso de uso","nav.cta":"Iniciar cuestionario","footer.legal":"Este sitio tiene fines informativos generales y no constituye asesoría legal, fiscal o financiera definitiva. Cada estructura societaria debe evaluarse con el apoyo de profesionales especializados, conforme a la normativa vigente de EE.UU. y del país de residencia del cliente.<br>© 2026 Virtual Cloud World LLC. Florida, EE.UU. Todos los derechos reservados.","b.eyebrow":"Acceso financiero","b.h2":"Banca, valores y criptoactivos","b.p":"Una entidad en EE.UU. abre el acceso al sistema financiero internacional. Le ayudamos a navegar cada plataforma según su perfil.","b.trad.h":"🏛 Sistema financiero tradicional","b.mercury":"Fintech bancaria preferida para LLC de founders latinoamericanos. Apertura 100% remota. Cuenta en USD, tarjeta corporativa e integraciones con Stripe y QuickBooks.","b.relay":"Banca business con múltiples cuentas y tarjetas, ideal para separar flujos por proyecto. Apertura remota para no residentes.","b.brex":"Brex para gastos corporativos. Wise Business para pagos multidivisa de bajo costo. Complementarios a la cuenta principal.","b.crypto.h":"₿ Activos digitales y criptomonedas","b.coinbase":"Custodia y trading institucional regulado en EE.UU. Acepta entidades con dossier KYC/AML robusto.","b.kraken":"Exchange regulado con cuentas corporativas. Acepta no residentes con LLC debidamente constituida.","b.circle":"Circle para USDC. Fireblocks para custodia institucional. Accesibles desde LLC con dossier completo.","b.brokers.h":"📈 Brokers de valores regulados por FINRA/SEC","b.brokers.p":"Una LLC con EIN permite acceder a cuentas de inversión en brokers regulados de EE.UU. con acceso a bolsas, ETFs, bonos y opciones.","b.ib":"Acceso a 150+ mercados. Tarifa más baja del mercado. Acepta entidades extranjeras con LLC en EE.UU.","b.tdsch":"Plataformas robustas para inversión a largo plazo, fondos y renta fija.","b.fid":"Fuerte en fondos de inversión y planificación de largo plazo.","b.note.h":"Nota importante sobre apertura bancaria","b.note.p":"Los requisitos cambian con frecuencia. VCW trabaja con cada institución para conocer los requisitos actuales para clientes no residentes. Nuestro dossier KYC/AML está diseñado para cumplir con los estándares de estas plataformas.","next.label":"Siguiente sección","next.comply":"KYC, AML y Due Diligence","next.btn":"Continuar →","nav.banca":"Banca, valores y cripto"},
+  en: {"nav.home":"Home","nav.ejes":"What We Do","nav.comercial":"Commercial Operations","nav.struct":"Structures","nav.proceso":"Process","nav.comply":"Compliance","nav.ejemplo":"Use Case","nav.cta":"Start questionnaire","footer.legal":"This site is for general informational purposes only and does not constitute legal, tax, or financial advice. Each corporate structure must be evaluated with the support of qualified professionals in accordance with applicable U.S. law and the law of the client's country of residence.<br>© 2026 Virtual Cloud World LLC. Florida, U.S.A. All rights reserved.","b.eyebrow":"Financial Access","b.h2":"Banking, securities, and crypto assets","b.p":"A U.S. entity unlocks access to the international financial system — both traditional and digital. We help you navigate each platform according to your profile.","b.trad.h":"🏛 Traditional financial system","b.mercury":"Preferred banking fintech for LATAM founders LLC. 100% remote opening, no U.S. visit required. USD account, corporate card, Stripe and QuickBooks integrations.","b.relay":"Business banking with multiple accounts and cards, ideal for separating flows by project. Remote opening available for non-residents.","b.brex":"Brex for corporate expenses. Wise Business for low-cost international multi-currency payments. Complementary to the main account.","b.crypto.h":"₿ Digital assets and cryptocurrencies","b.coinbase":"Institutional custody and trading regulated in the U.S. Accepts entities with a robust KYC/AML dossier.","b.kraken":"Regulated exchange with corporate accounts. Accepts non-residents with a properly formed LLC.","b.circle":"Circle for USDC issuance. Fireblocks for high-level institutional custody. Accessible from an LLC with a complete dossier.","b.brokers.h":"📈 FINRA/SEC-regulated securities brokers","b.brokers.p":"An LLC with an EIN allows access to investment accounts at U.S. regulated brokers with access to stock exchanges, ETFs, Treasuries, and options markets.","b.ib":"Access to 150+ markets. Lowest commissions in the market. Accepts foreign entities with a U.S. LLC.","b.tdsch":"Robust platforms for long-term investing, funds, and fixed income.","b.fid":"Strong in investment funds and long-term planning.","b.note.h":"Important note on account opening","b.note.p":"Requirements change frequently. VCW works directly with each institution to know current requirements for non-resident clients. Our KYC/AML dossier is designed to meet these platforms standards.","next.label":"Next section","next.comply":"KYC, AML & Due Diligence","next.btn":"Continue →","nav.banca":"Banking, securities & crypto"}
+};
+let lang = localStorage.getItem('vcw-lang') || 'es';
+function setLang(l){
+  lang = l;
+  document.documentElement.lang = l;
+  document.getElementById('btn-es').classList.toggle('active', l==='es');
+  document.getElementById('btn-en').classList.toggle('active', l==='en');
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k = el.getAttribute('data-i18n');
+    if(T[l][k] !== undefined) el.innerHTML = T[l][k];
+  });
+  localStorage.setItem('vcw-lang', l);
+}
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);} });
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+setLang(lang);
+</script>
+</body>
+</html>

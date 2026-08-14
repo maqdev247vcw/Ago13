@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Onboarding Questionnaire · Virtual Cloud World LLC</title>
+<meta name="description" content="KYC/AML onboarding questionnaire to design your U.S. corporate structure. Virtual Cloud World LLC.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1B2356;--navy-deep:#10142F;--navy-soft:#2C3570;
+  --gold:#C18A33;--gold-soft:#E0B563;--gold-pale:#F3E3C2;
+  --cream:#F8F6F1;--pale-blue:#EEF0FA;--white:#fff;
+  --text:#1B2356;--muted:#5B6178;--border:#E3E4EF;
+  --danger:#B3492F;--max:840px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--cream);line-height:1.6;}
+h1,h2,h3{font-family:'Playfair Display',serif;font-weight:600;color:var(--navy);letter-spacing:-.01em;}
+a{color:inherit;}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+
+header{background:var(--navy);color:#fff;padding:18px 0;}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.logo{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;display:flex;gap:7px;align-items:baseline;flex-shrink:0;}
+.logo span{font-family:'Inter',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--gold-soft);border:1px solid var(--gold-soft);padding:2px 6px;border-radius:3px;}
+.head-right{display:flex;align-items:center;gap:10px;}
+.back-link{font-size:13px;color:#C7CBE6;display:flex;align-items:center;gap:5px;white-space:nowrap;}
+.back-link:hover{color:var(--gold-soft);}
+.lang-toggle{display:flex;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:6px;overflow:hidden;}
+.lang-btn{padding:6px 12px;cursor:pointer;border:none;background:none;font-family:inherit;font-size:11.5px;font-weight:700;color:rgba(255,255,255,.6);transition:.18s;letter-spacing:.05em;}
+.lang-btn.active{background:var(--gold);color:var(--navy-deep);}
+.lang-btn:hover:not(.active){color:#fff;}
+
+.hero-mini{padding:44px 0 8px;}
+.eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.hero-mini h1{font-size:clamp(22px,3.2vw,30px);margin-bottom:10px;}
+.hero-mini p{color:var(--muted);font-size:14.5px;max-width:620px;}
+
+.info-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px 22px;margin:22px 0 8px;font-size:14px;color:var(--muted);}
+.info-card strong{color:var(--navy);}
+.doc-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:11px;}
+.doc-tags span{font-size:12px;font-weight:600;background:var(--pale-blue);color:var(--navy);padding:5px 12px;border-radius:20px;}
+
+.progress-wrap{padding:24px 0 6px;position:sticky;top:0;background:var(--cream);z-index:10;}
+.progress-label{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:8px;font-weight:600;}
+.step-title{color:var(--navy);}
+.progress-track{height:4px;background:var(--border);border-radius:4px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-soft));width:11%;transition:width .35s ease;}
+
+form{padding-bottom:40px;}
+.step{display:none;}
+.step.active{display:block;animation:fadeIn .3s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+.panel{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:30px;margin-top:18px;}
+.panel h2{font-size:20px;margin-bottom:5px;}
+.panel .desc{color:var(--muted);font-size:13.5px;margin-bottom:24px;}
+.sub-h{font-size:13px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.05em;margin:24px 0 12px;padding-top:16px;border-top:1px solid var(--border);}
+.sub-h:first-of-type{border-top:none;padding-top:0;margin-top:0;}
+
+.field{margin-bottom:16px;}
+.field label{display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:6px;}
+.field label.req::after{content:" *";color:var(--gold);}
+input[type=text],input[type=email],input[type=tel],input[type=number],input[type=date],select,textarea{
+  width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:6px;
+  font-family:inherit;font-size:14px;color:var(--text);background:var(--white);transition:border-color .2s;
+}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);}
+textarea{resize:vertical;min-height:78px;}
+.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:580px){.field-grid{grid-template-columns:1fr;}}
+
+.opt-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+@media(max-width:540px){.opt-grid{grid-template-columns:1fr;}}
+.opt{display:flex;align-items:flex-start;gap:9px;border:1px solid var(--border);border-radius:8px;padding:11px 13px;cursor:pointer;font-size:13.5px;transition:.2s;}
+.opt:hover{border-color:var(--gold-soft);}
+.opt input{width:auto;margin-top:2px;accent-color:var(--gold);flex-shrink:0;}
+.opt.checked{border-color:var(--gold);background:var(--gold-pale);}
+
+.toggle-block{display:none;margin-top:12px;padding:14px;background:var(--pale-blue);border-radius:8px;border-left:3px solid var(--gold);}
+.toggle-block.show{display:block;}
+
+table.ubo{width:100%;border-collapse:collapse;margin-top:6px;}
+table.ubo th{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);text-align:left;padding:5px 7px;border-bottom:1px solid var(--border);}
+table.ubo td{padding:5px 7px;vertical-align:top;}
+table.ubo input,table.ubo select{padding:7px 8px;font-size:13px;}
+.ubo-remove{background:none;border:none;color:var(--danger);font-size:12.5px;cursor:pointer;font-weight:600;}
+.add-row-btn{margin-top:9px;background:none;border:1px dashed var(--gold);color:var(--navy);padding:8px 15px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;}
+.add-row-btn:hover{background:var(--gold-pale);}
+
+.doc-row{display:flex;align-items:center;gap:10px;border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:8px;}
+.doc-row label{margin:0;font-size:13.5px;font-weight:600;color:var(--navy);display:flex;align-items:center;gap:9px;cursor:pointer;}
+.doc-row input[type=checkbox]{width:auto;accent-color:var(--gold);}
+
+.nav-buttons{display:flex;justify-content:space-between;gap:12px;margin-top:26px;}
+.btn{padding:12px 24px;border-radius:6px;font-weight:600;font-size:14px;cursor:pointer;border:1px solid transparent;transition:.2s;font-family:inherit;}
+.btn-prev{background:var(--white);border-color:var(--border);color:var(--muted);}
+.btn-prev:hover{border-color:var(--navy);color:var(--navy);}
+.btn-prev[disabled]{visibility:hidden;}
+.btn-next,.btn-submit{background:var(--navy);color:#fff;margin-left:auto;}
+.btn-next:hover,.btn-submit:hover{background:var(--navy-soft);}
+.btn-submit{background:var(--gold);color:var(--navy-deep);}
+.btn-submit:hover{background:var(--gold-soft);}
+
+.consent-row{display:flex;align-items:flex-start;gap:11px;padding:13px 0;border-top:1px solid var(--border);font-size:13.5px;}
+.consent-row:first-of-type{border-top:none;}
+.consent-row input{margin-top:2px;accent-color:var(--gold);}
+
+.summary-box{background:var(--pale-blue);border-radius:8px;padding:18px 20px;margin-bottom:22px;}
+.summary-box h3{font-size:14.5px;margin-bottom:11px;}
+.summary-row{display:flex;justify-content:space-between;gap:12px;font-size:13px;padding:6px 0;border-bottom:1px solid rgba(0,0,0,.06);}
+.summary-row span:first-child{color:var(--muted);}
+.summary-row span:last-child{font-weight:600;color:var(--navy);text-align:right;}
+
+.note-box{font-size:12px;color:var(--muted);background:var(--pale-blue);border-radius:8px;padding:13px 15px;margin-top:16px;}
+.success-screen{display:none;text-align:center;padding:80px 0;}
+.success-screen.show{display:block;}
+.success-screen .ic{font-size:44px;color:var(--gold);margin-bottom:16px;}
+.success-screen h2{font-size:24px;margin-bottom:11px;}
+.success-screen p{color:var(--muted);max-width:420px;margin:0 auto 24px;}
+
+footer{padding:28px 0 46px;text-align:center;font-size:12px;color:var(--muted);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="logo">Virtual Cloud World <span>LLC</span></div>
+    <div class="head-right">
+      <div class="lang-toggle" role="group">
+        <button class="lang-btn active" id="btn-es" onclick="setLang('es')">ES</button>
+        <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+      <a href="index.html" class="back-link" data-i18n="nav.back">← Volver al sitio</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="hero-mini">
+    <div class="eyebrow">KYC · AML · Due Diligence</div>
+    <h1 data-i18n="hero.h1">Cuestionario de Vinculación de Cliente</h1>
+    <p data-i18n="hero.p">Información requerida para evaluar y diseñar su estructura societaria en Estados Unidos. Diligéncielo con la mayor precisión posible — toda la información se trata de forma confidencial.</p>
+  </div>
+
+  <div class="info-card">
+    <strong data-i18n="docs.title">Documentos que conviene tener a la mano</strong> <span data-i18n="docs.subtitle">(puede enviarlos por correo al finalizar — no es obligatorio tenerlos todos ahora)</span>
+    <div class="doc-tags">
+      <span data-i18n="doc.1">Pasaporte vigente</span>
+      <span data-i18n="doc.2">Comprobante de domicilio reciente</span>
+      <span data-i18n="doc.3">Declaración de renta o estado financiero</span>
+      <span data-i18n="doc.4">Certificado de la empresa (si aplica)</span>
+    </div>
+  </div>
+
+  <div id="form-screen">
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span><span data-i18n="prog.step">Paso</span> <span id="step-current">1</span> <span data-i18n="prog.of">de</span> <span id="step-total">9</span></span>
+        <span class="step-title" id="step-title">Identificación</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+    </div>
+
+    <form id="kyc-form" name="cuestionario-vinculacion" method="POST">
+      <p style="display:none"><label>Skip: <input name="bot-field"></label></p>
+
+      <!-- STEP A -->
+      <section class="step active" data-step="1" data-title-es="Identificación" data-title-en="Identification">
+        <div class="panel">
+          <h2 data-i18n="A.h2">A · Tipo de solicitante e identificación</h2>
+          <p class="desc" data-i18n="A.desc">Seleccione si la solicitud es a nombre de una persona natural o de una persona jurídica.</p>
+          <div class="opt-grid">
+            <label class="opt"><input type="radio" name="tipo_solicitante" value="natural" checked required> <span data-i18n="A.natural">Persona natural</span></label>
+            <label class="opt"><input type="radio" name="tipo_solicitante" value="juridica" required> <span data-i18n="A.juridica">Persona jurídica</span></label>
+          </div>
+
+          <div id="natural-fields">
+            <div class="sub-h" data-i18n="A.nat.title">Si es persona natural</div>
+            <div class="field"><label class="req" data-i18n="A.fullname">Nombres y apellidos completos</label><input type="text" name="nombres_completos"></div>
+            <div class="field-grid">
+              <div class="field"><label data-i18n="A.idtype">Tipo y número de documento de identidad</label><input type="text" name="documento_identidad"></div>
+              <div class="field"><label data-i18n="A.nationality">Nacionalidad(es)</label><input type="text" name="nacionalidades"></div>
+            </div>
+            <div class="field-grid">
+              <div class="field"><label data-i18n="A.dob">Fecha de nacimiento</label><input type="date" name="fecha_nacimiento"></div>
+              <div class="field"><label data-i18n="A.country">País de residencia</label><input type="text" name="pais_residencia"></div>
+            </div>
+            <div class="field"><label data-i18n="A.taxcountry">País de residencia fiscal (si difiere del anterior)</label><input type="text" name="pais_residencia_fiscal"></div>
+            <div class="field"><label data-i18n="A.address">Dirección de residencia</label><input type="text" name="direccion_residencia"></div>
+            <div class="field-grid">
+              <div class="field"><label data-i18n="A.phone">Teléfono</label><input type="tel" name="telefono"></div>
+              <div class="field"><label class="req" data-i18n="A.email">Correo electrónico</label><input type="email" name="correo" required></div>
+            </div>
+            <div class="field-grid">
+              <div class="field"><label data-i18n="A.profession">Profesión u ocupación</label><input type="text" name="profesion_ocupacion"></div>
+              <div class="field"><label data-i18n="A.employer">Empleador o negocio propio</label><input type="text" name="empleador_negocio"></div>
+            </div>
+          </div>
+
+          <div id="juridica-fields" style="display:none">
+            <div class="sub-h" data-i18n="A.jur.title">Si es persona jurídica</div>
+            <div class="field"><label class="req" data-i18n="A.company">Razón social</label><input type="text" name="razon_social"></div>
+            <div class="field-grid">
+              <div class="field"><label data-i18n="A.incorp_country">País de constitución</label><input type="text" name="pais_constitucion"></div>
+              <div class="field"><label data-i18n="A.incorp_date">Fecha de constitución</label><input type="date" name="fecha_constitucion"></div>
+            </div>
+            <div class="field-grid">
+              <div class="field"><label data-i18n="A.taxid">Número de identificación tributaria (NIT/RUC/RFC)</label><input type="text" name="nit_ruc_rfc"></div>
+              <div class="field"><label data-i18n="A.activity">Actividad económica principal</label><input type="text" name="actividad_economica"></div>
+            </div>
+            <div class="field"><label data-i18n="A.reg_address">Dirección registrada</label><input type="text" name="direccion_registrada"></div>
+            <div class="field-grid">
+              <div class="field"><label data-i18n="A.legal_rep">Representante legal</label><input type="text" name="representante_legal"></div>
+              <div class="field"><label data-i18n="A.rep_id">Documento de identidad del representante</label><input type="text" name="documento_representante"></div>
+            </div>
+            <div class="field"><label class="req" data-i18n="A.email">Correo electrónico de contacto</label><input type="email" name="correo_juridica"></div>
+          </div>
+
+          <div class="sub-h" data-i18n="A.ubo.title">Beneficiarios finales (25% o más de participación o control efectivo)</div>
+          <table class="ubo">
+            <thead><tr>
+              <th data-i18n="ubo.name">Nombre completo</th>
+              <th data-i18n="ubo.pct">% participación</th>
+              <th data-i18n="ubo.nat">Nacionalidad</th>
+              <th data-i18n="ubo.pep">¿Es PEP?</th>
+              <th></th>
+            </tr></thead>
+            <tbody id="ubo-body"></tbody>
+          </table>
+          <button type="button" class="add-row-btn" id="add-ubo" data-i18n="ubo.add">+ Agregar beneficiario</button>
+        </div>
+      </section>
+
+      <!-- STEP B -->
+      <section class="step" data-step="2" data-title-es="Objetivo de la estructura" data-title-en="Structure objective">
+        <div class="panel">
+          <h2 data-i18n="B.h2">B · Objetivo de la estructura</h2>
+          <p class="desc" data-i18n="B.desc">¿Cuál es el objetivo principal de constituir una sociedad en EE. UU.? Seleccione todas las que apliquen.</p>
+          <div class="opt-grid">
+            <label class="opt"><input type="checkbox" name="objetivo" value="proteccion_patrimonial"> <span data-i18n="B.o1">Protección patrimonial</span></label>
+            <label class="opt"><input type="checkbox" name="objetivo" value="eficiencia_fiscal"> <span data-i18n="B.o2">Eficiencia fiscal</span></label>
+            <label class="opt"><input type="checkbox" name="objetivo" value="expansion_negocio"> <span data-i18n="B.o3">Expansión de negocio en EE. UU.</span></label>
+            <label class="opt"><input type="checkbox" name="objetivo" value="inversion_valores_cripto"> <span data-i18n="B.o4">Inversión en valores o cripto</span></label>
+            <label class="opt"><input type="checkbox" name="objetivo" value="tenencia_bienes_raices"> <span data-i18n="B.o5">Tenencia de bienes raíces</span></label>
+            <label class="opt"><input type="checkbox" name="objetivo" value="sucesion_planeacion"> <span data-i18n="B.o6">Sucesión y planeación patrimonial</span></label>
+            <label class="opt"><input type="checkbox" name="objetivo" value="comercio_electronico"> <span data-i18n="B.o7">Comercio electrónico / operación digital</span></label>
+            <label class="opt"><input type="checkbox" name="objetivo" value="venta_servicios_global"> <span data-i18n="B.o8">Venta global de productos o servicios</span></label>
+            <label class="opt"><input type="checkbox" name="objetivo" value="otro" id="objetivo-otro-cb"> <span data-i18n="B.o9">Otro</span></label>
+          </div>
+          <div class="toggle-block" id="objetivo-otro-block">
+            <div class="field"><label data-i18n="lbl.describe">Descríbalo</label><input type="text" name="objetivo_otro_detalle"></div>
+          </div>
+          <div class="sub-h" data-i18n="B.horizon.title">Horizonte y tipo de operación</div>
+          <div class="field"><label data-i18n="B.horizon.lbl">Horizonte de tiempo previsto para esta estructura</label>
+            <select name="horizonte_tiempo">
+              <option value="" data-i18n="opt.select">Seleccione...</option>
+              <option value="corto" data-i18n="B.h.short">Corto plazo (menos de 2 años)</option>
+              <option value="mediano" data-i18n="B.h.mid">Mediano plazo (2–5 años)</option>
+              <option value="largo" data-i18n="B.h.long">Largo plazo (más de 5 años / generacional)</option>
+            </select>
+          </div>
+          <div class="field"><label data-i18n="B.optype.lbl">¿Planea operar activamente en EE. UU. o solo administrar activos de forma pasiva?</label></div>
+          <div class="opt-grid">
+            <label class="opt"><input type="radio" name="tipo_operacion" value="activa"> <span data-i18n="B.op.active">Operación activa en EE. UU.</span></label>
+            <label class="opt"><input type="radio" name="tipo_operacion" value="pasiva"> <span data-i18n="B.op.passive">Administración pasiva de activos</span></label>
+            <label class="opt"><input type="radio" name="tipo_operacion" value="ambas"> <span data-i18n="B.op.both">Ambas / aún no lo defino</span></label>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP C -->
+      <section class="step" data-step="3" data-title-es="Perfil patrimonial" data-title-en="Asset profile">
+        <div class="panel">
+          <h2 data-i18n="C.h2">C · Perfil patrimonial</h2>
+          <div class="field"><label data-i18n="C.networth.lbl">Rango de patrimonio neto aproximado</label></div>
+          <div class="opt-grid">
+            <label class="opt"><input type="radio" name="patrimonio_neto" value="<100k"> <span>menos de US$100,000</span></label>
+            <label class="opt"><input type="radio" name="patrimonio_neto" value="100k-500k"> <span>US$100,000 – US$500,000</span></label>
+            <label class="opt"><input type="radio" name="patrimonio_neto" value="500k-1m"> <span>US$500,000 – US$1,000,000</span></label>
+            <label class="opt"><input type="radio" name="patrimonio_neto" value="1m-5m"> <span>US$1,000,000 – US$5,000,000</span></label>
+            <label class="opt"><input type="radio" name="patrimonio_neto" value=">5m"> <span data-i18n="C.nw.over5m">Más de US$5,000,000</span></label>
+          </div>
+          <div class="sub-h" data-i18n="C.source.title">Fuente principal de sus ingresos o patrimonio</div>
+          <div class="opt-grid">
+            <label class="opt"><input type="checkbox" name="fuente_ingresos" value="salario_honorarios"> <span data-i18n="C.s1">Salario / honorarios profesionales</span></label>
+            <label class="opt"><input type="checkbox" name="fuente_ingresos" value="utilidades_empresariales"> <span data-i18n="C.s2">Utilidades empresariales</span></label>
+            <label class="opt"><input type="checkbox" name="fuente_ingresos" value="venta_activos"> <span data-i18n="C.s3">Venta de activos</span></label>
+            <label class="opt"><input type="checkbox" name="fuente_ingresos" value="herencia_donacion"> <span data-i18n="C.s4">Herencia o donación</span></label>
+            <label class="opt"><input type="checkbox" name="fuente_ingresos" value="inversiones_financieras"> <span data-i18n="C.s5">Inversiones financieras</span></label>
+            <label class="opt"><input type="checkbox" name="fuente_ingresos" value="otro" id="fuente-otro-cb"> <span data-i18n="C.s6">Otro</span></label>
+          </div>
+          <div class="toggle-block" id="fuente-otro-block">
+            <div class="field"><label data-i18n="lbl.describe">Descríbalo</label><input type="text" name="fuente_ingresos_otro"></div>
+          </div>
+          <div class="sub-h" data-i18n="C.assets.title">Activos que planea aportar o movilizar inicialmente</div>
+          <div class="opt-grid">
+            <label class="opt"><input type="checkbox" name="activos_aportar" value="efectivo_ahorros"> <span data-i18n="C.a1">Efectivo / ahorros</span></label>
+            <label class="opt"><input type="checkbox" name="activos_aportar" value="bienes_raices"> <span data-i18n="C.a2">Bienes raíces</span></label>
+            <label class="opt"><input type="checkbox" name="activos_aportar" value="portafolio_valores"> <span data-i18n="C.a3">Portafolio de valores</span></label>
+            <label class="opt"><input type="checkbox" name="activos_aportar" value="criptoactivos"> <span data-i18n="C.a4">Criptoactivos</span></label>
+            <label class="opt"><input type="checkbox" name="activos_aportar" value="participaciones_empresas"> <span data-i18n="C.a5">Participaciones en empresas operativas</span></label>
+            <label class="opt"><input type="checkbox" name="activos_aportar" value="otro" id="activos-otro-cb"> <span data-i18n="C.a6">Otro</span></label>
+          </div>
+          <div class="toggle-block" id="activos-otro-block">
+            <div class="field"><label data-i18n="lbl.describe">Descríbalo</label><input type="text" name="activos_aportar_otro"></div>
+          </div>
+          <div class="field" style="margin-top:16px"><label data-i18n="C.initial.lbl">Monto aproximado a aportar inicialmente (USD)</label><input type="number" name="monto_inicial_aportar" min="0" step="1000"></div>
+        </div>
+      </section>
+
+      <!-- STEP D -->
+      <section class="step" data-step="4" data-title-es="Origen de fondos" data-title-en="Source of funds">
+        <div class="panel">
+          <h2 data-i18n="D.h2">D · Origen y movimiento de fondos</h2>
+          <div class="field-grid">
+            <div class="field"><label data-i18n="D.transfer.lbl">Monto aproximado a transferir a EE. UU. en los próximos 12 meses (USD)</label><input type="number" name="monto_transferir_12m" min="0" step="1000"></div>
+            <div class="field"><label data-i18n="D.bank.lbl">Banco(s) de origen de los fondos</label><input type="text" name="banco_origen"></div>
+          </div>
+          <div class="field"><label data-i18n="D.origin.lbl">¿Los fondos provienen de actividades realizadas en su país de residencia?</label></div>
+          <div class="opt-grid">
+            <label class="opt"><input type="radio" name="fondos_origen_pais" value="si" id="fondos-si"> <span data-i18n="lbl.yes">Sí</span></label>
+            <label class="opt"><input type="radio" name="fondos_origen_pais" value="no" id="fondos-no"> <span data-i18n="D.no.explain">No — explicar a continuación</span></label>
+          </div>
+          <div class="toggle-block" id="fondos-no-block">
+            <div class="field"><label data-i18n="D.explain.lbl">Explique brevemente</label><textarea name="fondos_origen_explicacion"></textarea></div>
+          </div>
+          <div class="sub-h" data-i18n="D.docs.title">¿Cuenta con documentación que soporte el origen de los fondos?</div>
+          <div class="opt-grid">
+            <label class="opt"><input type="checkbox" name="documentacion_soporte" value="declaracion_renta"> <span data-i18n="D.d1">Declaración de renta</span></label>
+            <label class="opt"><input type="checkbox" name="documentacion_soporte" value="estados_financieros"> <span data-i18n="D.d2">Estados financieros</span></label>
+            <label class="opt"><input type="checkbox" name="documentacion_soporte" value="contratos_venta"> <span data-i18n="D.d3">Contratos de venta</span></label>
+            <label class="opt"><input type="checkbox" name="documentacion_soporte" value="escrituras_publicas"> <span data-i18n="D.d4">Escrituras públicas</span></label>
+            <label class="opt"><input type="checkbox" name="documentacion_soporte" value="certificacion_laboral"> <span data-i18n="D.d5">Certificación laboral / de ingresos</span></label>
+            <label class="opt"><input type="checkbox" name="documentacion_soporte" value="otro"> <span data-i18n="lbl.other">Otro</span></label>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP E -->
+      <section class="step" data-step="5" data-title-es="Debida diligencia" data-title-en="Due diligence">
+        <div class="panel">
+          <h2 data-i18n="E.h2">E · Declaraciones de debida diligencia</h2>
+          <p class="desc" data-i18n="E.desc">Requisito regulatorio estándar para todo cliente; se aplica por igual a todos los solicitantes. Virtual Cloud World LLC verificará esta información de forma independiente.</p>
+
+          <div class="field"><label data-i18n="E.pep.lbl">1. ¿Usted, su cónyuge, o un familiar hasta segundo grado ha desempeñado en los últimos 5 años un cargo público, de elección popular o de alta gerencia en una entidad estatal (Persona Expuesta Políticamente — PEP)?</label></div>
+          <div class="opt-grid">
+            <label class="opt"><input type="radio" name="es_pep" value="si" id="pep-si"> <span data-i18n="lbl.yes">Sí</span></label>
+            <label class="opt"><input type="radio" name="es_pep" value="no" id="pep-no"> <span data-i18n="lbl.no">No</span></label>
+          </div>
+          <div class="toggle-block" id="pep-block">
+            <div class="field-grid">
+              <div class="field"><label data-i18n="E.pep.role">Cargo</label><input type="text" name="pep_cargo"></div>
+              <div class="field"><label data-i18n="E.pep.country">País</label><input type="text" name="pep_pais"></div>
+            </div>
+            <div class="field"><label data-i18n="E.pep.period">Período</label><input type="text" name="pep_periodo"></div>
+          </div>
+
+          <div class="field" style="margin-top:20px"><label data-i18n="E.sanction.lbl">2. ¿Ha sido usted, su empresa, o algún beneficiario final, objeto de investigación, sanción o proceso judicial relacionado con lavado de activos, financiación del terrorismo, corrupción, fraude o evasión fiscal?</label></div>
+          <div class="opt-grid">
+            <label class="opt"><input type="radio" name="investigacion_sancion" value="si"> <span data-i18n="lbl.yes">Sí</span></label>
+            <label class="opt"><input type="radio" name="investigacion_sancion" value="no"> <span data-i18n="lbl.no">No</span></label>
+          </div>
+
+          <div class="field" style="margin-top:20px"><label data-i18n="E.sanctions.lbl">3. ¿Usted o alguno de los beneficiarios finales mantiene relaciones comerciales o financieras con personas, entidades o países sujetos a sanciones internacionales (OFAC, ONU, Unión Europea)?</label></div>
+          <div class="opt-grid">
+            <label class="opt"><input type="radio" name="relaciones_sancionadas" value="si"> <span data-i18n="lbl.yes">Sí</span></label>
+            <label class="opt"><input type="radio" name="relaciones_sancionadas" value="no"> <span data-i18n="lbl.no">No</span></label>
+          </div>
+          <div class="note-box" data-i18n="E.note">Cualquier inconsistencia detectada en el proceso de verificación podrá derivar en una solicitud de soportes adicionales o, en su caso, en la no vinculación del cliente.</div>
+        </div>
+      </section>
+
+      <!-- STEP F -->
+      <section class="step" data-step="6" data-title-es="Banca y cripto" data-title-en="Banking & crypto">
+        <div class="panel">
+          <h2 data-i18n="F.h2">F · Necesidades de banca, inversión y cripto</h2>
+          <p class="desc" data-i18n="F.desc">Servicios financieros de su interés.</p>
+          <div class="opt-grid">
+            <label class="opt"><input type="checkbox" name="servicios_interes" value="cuenta_multidivisa"> <span data-i18n="F.s1">Cuenta corporativa multidivisa</span></label>
+            <label class="opt"><input type="checkbox" name="servicios_interes" value="tesoreria_credito"> <span data-i18n="F.s2">Tesorería / líneas de crédito</span></label>
+            <label class="opt"><input type="checkbox" name="servicios_interes" value="tarjetas_corporativas"> <span data-i18n="F.s3">Tarjetas corporativas</span></label>
+            <label class="opt"><input type="checkbox" name="servicios_interes" value="brokers_valores"> <span data-i18n="F.s4">Acceso a brokers de valores regulados</span></label>
+            <label class="opt"><input type="checkbox" name="servicios_interes" value="exchange_cripto"> <span data-i18n="F.s5">Cuenta en exchange de criptoactivos regulado</span></label>
+            <label class="opt"><input type="checkbox" name="servicios_interes" value="custodia_cripto"> <span data-i18n="F.s6">Custodia institucional de criptoactivos</span></label>
+            <label class="opt"><input type="checkbox" name="servicios_interes" value="pasarela_pago"> <span data-i18n="F.s7">Pasarela de pago (Stripe / PayPal Business)</span></label>
+            <label class="opt"><input type="checkbox" name="servicios_interes" value="marketplace"> <span data-i18n="F.s8">Vendedor en marketplace (Amazon / Shopify)</span></label>
+          </div>
+          <div class="sub-h" data-i18n="F.exp.title">Experiencia previa</div>
+          <div class="field"><label data-i18n="F.banks.lbl">¿Tiene experiencia previa con bancos o brokers internacionales?</label></div>
+          <div class="opt-grid">
+            <label class="opt"><input type="radio" name="experiencia_bancos" value="si" id="bancos-si"> <span data-i18n="lbl.yes">Sí</span></label>
+            <label class="opt"><input type="radio" name="experiencia_bancos" value="no" id="bancos-no"> <span data-i18n="lbl.no">No</span></label>
+          </div>
+          <div class="toggle-block" id="bancos-block">
+            <div class="field"><label data-i18n="F.banks.which">¿Cuáles?</label><input type="text" name="bancos_cuales"></div>
+          </div>
+          <div class="field" style="margin-top:16px"><label data-i18n="F.crypto.lbl">¿Opera actualmente con criptoactivos?</label></div>
+          <div class="opt-grid">
+            <label class="opt"><input type="radio" name="opera_cripto" value="si" id="cripto-si"> <span data-i18n="lbl.yes">Sí</span></label>
+            <label class="opt"><input type="radio" name="opera_cripto" value="no" id="cripto-no"> <span data-i18n="lbl.no">No</span></label>
+          </div>
+          <div class="toggle-block" id="cripto-block">
+            <div class="field"><label data-i18n="F.crypto.which">¿En qué exchanges o wallets?</label><input type="text" name="cripto_exchanges"></div>
+          </div>
+          <div class="field" style="margin-top:16px"><label data-i18n="F.profile.lbl">Perfil como inversionista</label></div>
+          <div class="opt-grid">
+            <label class="opt"><input type="radio" name="perfil_inversionista" value="conservador"> <span data-i18n="F.p1">Conservador</span></label>
+            <label class="opt"><input type="radio" name="perfil_inversionista" value="moderado"> <span data-i18n="F.p2">Moderado</span></label>
+            <label class="opt"><input type="radio" name="perfil_inversionista" value="agresivo"> <span data-i18n="F.p3">Agresivo</span></label>
+            <label class="opt"><input type="radio" name="perfil_inversionista" value="no_aplica"> <span data-i18n="F.p4">No aplica / sin experiencia</span></label>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP G -->
+      <section class="step" data-step="7" data-title-es="Estructura y jurisdicción" data-title-en="Structure & jurisdiction">
+        <div class="panel">
+          <h2 data-i18n="G.h2">G · Preferencias de estructura y jurisdicción</h2>
+          <div class="field"><label data-i18n="G.entity.lbl">Tipo de entidad preferida</label></div>
+          <div class="opt-grid">
+            <label class="opt"><input type="radio" name="tipo_entidad" value="llc"> <span data-i18n="G.e1">LLC</span></label>
+            <label class="opt"><input type="radio" name="tipo_entidad" value="ccorp"> <span data-i18n="G.e2">C-Corporation</span></label>
+            <label class="opt"><input type="radio" name="tipo_entidad" value="sin_preferencia"> <span data-i18n="G.e3">Sin preferencia — requiero asesoría</span></label>
+          </div>
+          <div class="field" style="margin-top:18px"><label data-i18n="G.state.lbl">Estado preferido</label></div>
+          <div class="opt-grid">
+            <label class="opt"><input type="radio" name="estado_preferido" value="delaware"> <span>Delaware</span></label>
+            <label class="opt"><input type="radio" name="estado_preferido" value="wyoming"> <span>Wyoming</span></label>
+            <label class="opt"><input type="radio" name="estado_preferido" value="florida"> <span>Florida</span></label>
+            <label class="opt"><input type="radio" name="estado_preferido" value="newmexico"> <span>New Mexico</span></label>
+            <label class="opt"><input type="radio" name="estado_preferido" value="sin_preferencia"> <span data-i18n="G.s5">Sin preferencia</span></label>
+          </div>
+          <div class="field" style="margin-top:18px"><label data-i18n="G.multi.lbl">¿Requiere más de una entidad (estructura holding + operativa)?</label></div>
+          <div class="opt-grid">
+            <label class="opt"><input type="radio" name="mas_entidades" value="si"> <span data-i18n="lbl.yes">Sí</span></label>
+            <label class="opt"><input type="radio" name="mas_entidades" value="no"> <span data-i18n="lbl.no">No</span></label>
+            <label class="opt"><input type="radio" name="mas_entidades" value="no_seguro"> <span data-i18n="G.m3">No estoy seguro</span></label>
+          </div>
+          <div class="sub-h" data-i18n="G.priority.title">¿Qué prioriza más en su estructura?</div>
+          <div class="opt-grid">
+            <label class="opt"><input type="checkbox" name="prioridad" value="privacidad"> <span data-i18n="G.pr1">Privacidad</span></label>
+            <label class="opt"><input type="checkbox" name="prioridad" value="costo_mantenimiento"> <span data-i18n="G.pr2">Costo de mantenimiento</span></label>
+            <label class="opt"><input type="checkbox" name="prioridad" value="reconocimiento_institucional"> <span data-i18n="G.pr3">Reconocimiento institucional</span></label>
+            <label class="opt"><input type="checkbox" name="prioridad" value="cercania_latam"> <span data-i18n="G.pr4">Cercanía operativa con LATAM</span></label>
+            <label class="opt"><input type="checkbox" name="prioridad" value="acceso_capital"> <span data-i18n="G.pr5">Acceso a capital de riesgo</span></label>
+            <label class="opt"><input type="checkbox" name="prioridad" value="velocidad_apertura"> <span data-i18n="G.pr6">Velocidad de apertura bancaria</span></label>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP H -->
+      <section class="step" data-step="8" data-title-es="Documentos" data-title-en="Documents">
+        <div class="panel">
+          <h2 data-i18n="H.h2">H · Checklist documental</h2>
+          <p class="desc" data-i18n="H.desc">Marque los documentos que ya tiene disponibles. Al finalizar, use el botón de abajo para enviarlos por correo — no es necesario tenerlos todos para continuar.</p>
+
+          <div class="doc-row"><label><input type="checkbox" name="doc_pasaporte_listo" value="si"> <span data-i18n="H.d1">Pasaporte vigente (cada socio / beneficiario final)</span></label></div>
+          <div class="doc-row"><label><input type="checkbox" name="doc_domicilio_listo" value="si"> <span data-i18n="H.d2">Comprobante de domicilio (máx. 3 meses)</span></label></div>
+          <div class="doc-row"><label><input type="checkbox" name="doc_renta_listo" value="si"> <span data-i18n="H.d3">Declaración de renta o estado financiero reciente</span></label></div>
+          <div class="doc-row"><label><input type="checkbox" name="doc_certificado_existencia_listo" value="si"> <span data-i18n="H.d4">Certificado de existencia y representación legal (si es persona jurídica)</span></label></div>
+          <div class="doc-row"><label><input type="checkbox" name="doc_composicion_accionaria_listo" value="si"> <span data-i18n="H.d5">Composición accionaria / beneficiarios finales</span></label></div>
+          <div class="doc-row"><label><input type="checkbox" name="doc_referencia_bancaria_listo" value="si"> <span data-i18n="H.d6">Referencia bancaria</span></label></div>
+          <div class="doc-row"><label><input type="checkbox" name="doc_origen_fondos_listo" value="si"> <span data-i18n="H.d7">Soporte de origen de fondos (cuando aplique)</span></label></div>
+
+          <a href="#" id="mail-docs-btn" class="btn btn-prev" style="display:inline-flex;margin-top:16px;" data-i18n="H.mailbtn">✉ Enviar documentos por correo</a>
+        </div>
+      </section>
+
+      <!-- STEP I -->
+      <section class="step" data-step="9" data-title-es="Declaración y envío" data-title-en="Declaration & submission">
+        <div class="panel">
+          <h2 data-i18n="I.h2">I · Declaración y consentimiento</h2>
+          <div class="summary-box" id="summary-box">
+            <h3 data-i18n="I.sum.h">Resumen de su solicitud</h3>
+            <div id="summary-content"></div>
+          </div>
+          <div class="consent-row">
+            <input type="checkbox" id="consent-1" name="consent_veracidad" required>
+            <label for="consent-1" data-i18n="I.c1">Declaro que la información suministrada es veraz, completa y verificable, y me comprometo a notificar a Virtual Cloud World LLC cualquier cambio relevante.</label>
+          </div>
+          <div class="consent-row">
+            <input type="checkbox" id="consent-2" name="consent_datos" required>
+            <label for="consent-2" data-i18n="I.c2">Autorizo el tratamiento de mis datos personales conforme a la política de privacidad de Virtual Cloud World LLC y a la normativa de protección de datos aplicable.</label>
+          </div>
+          <div class="consent-row">
+            <input type="checkbox" id="consent-3" name="consent_diligencia" required>
+            <label for="consent-3" data-i18n="I.c3">Entiendo que la vinculación está sujeta al resultado del proceso de debida diligencia y que este cuestionario no garantiza la aceptación como cliente.</label>
+          </div>
+          <div class="field-grid" style="margin-top:20px">
+            <div class="field"><label class="req" data-i18n="I.sig.lbl">Nombre completo (firma electrónica)</label><input type="text" name="firma_nombre" required></div>
+            <div class="field"><label data-i18n="I.date.lbl">Fecha</label><input type="date" name="fecha_firma" id="fecha-firma"></div>
+          </div>
+          <div class="note-box" data-i18n="I.note">Este cuestionario tiene fines de vinculación y cumplimiento (KYC/AML). No constituye asesoría legal, fiscal o financiera definitiva. Cada estructura se evalúa y documenta de forma individual con apoyo profesional especializado.</div>
+        </div>
+      </section>
+
+      <div class="nav-buttons">
+        <button type="button" class="btn btn-prev" id="btn-prev" disabled data-i18n="nav.prev">← Anterior</button>
+        <button type="button" class="btn btn-next" id="btn-next" data-i18n="nav.next">Siguiente →</button>
+        <button type="submit" class="btn btn-submit" id="btn-submit" style="display:none" data-i18n="nav.submit">Enviar cuestionario</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="success-screen" id="success-screen">
+    <div class="ic">✓</div>
+    <h2 data-i18n="success.h2">Cuestionario recibido</h2>
+    <p data-i18n="success.p">Gracias por confiarnos esta información. Nuestro equipo revisará su solicitud y se pondrá en contacto para definir los siguientes pasos.</p>
+    <a href="index.html" class="btn btn-next" style="margin:0 auto;display:inline-block;" data-i18n="success.back">Volver al sitio</a>
+  </div>
+</div>
+
+<footer data-i18n="footer.text">Virtual Cloud World LLC · Información tratada de forma confidencial conforme a la normativa de protección de datos aplicable.</footer>
+
+<script>
+const T = {
+  es:{
+    "nav.back":"← Volver al sitio","nav.prev":"← Anterior","nav.next":"Siguiente →","nav.submit":"Enviar cuestionario",
+    "hero.h1":"Cuestionario de Vinculación de Cliente",
+    "hero.p":"Información requerida para evaluar y diseñar su estructura societaria en Estados Unidos. Diligéncielo con la mayor precisión posible — toda la información se trata de forma confidencial.",
+    "docs.title":"Documentos que conviene tener a la mano","docs.subtitle":"(puede enviarlos por correo al finalizar — no es obligatorio tenerlos todos ahora)",
+    "doc.1":"Pasaporte vigente","doc.2":"Comprobante de domicilio reciente","doc.3":"Declaración de renta o estado financiero","doc.4":"Certificado de la empresa (si aplica)",
+    "prog.step":"Paso","prog.of":"de",
+    "A.h2":"A · Tipo de solicitante e identificación","A.desc":"Seleccione si la solicitud es a nombre de una persona natural o de una persona jurídica.",
+    "A.natural":"Persona natural","A.juridica":"Persona jurídica",
+    "A.nat.title":"Si es persona natural","A.jur.title":"Si es persona jurídica",
+    "A.fullname":"Nombres y apellidos completos","A.idtype":"Tipo y número de documento de identidad","A.nationality":"Nacionalidad(es)","A.dob":"Fecha de nacimiento","A.country":"País de residencia","A.taxcountry":"País de residencia fiscal (si difiere del anterior)","A.address":"Dirección de residencia","A.phone":"Teléfono","A.email":"Correo electrónico","A.profession":"Profesión u ocupación","A.employer":"Empleador o negocio propio",
+    "A.company":"Razón social","A.incorp_country":"País de constitución","A.incorp_date":"Fecha de constitución","A.taxid":"Número de identificación tributaria (NIT/RUC/RFC)","A.activity":"Actividad económica principal","A.reg_address":"Dirección registrada","A.legal_rep":"Representante legal","A.rep_id":"Documento de identidad del representante",
+    "A.ubo.title":"Beneficiarios finales (25% o más de participación o control efectivo)",
+    "ubo.name":"Nombre completo","ubo.pct":"% participación","ubo.nat":"Nacionalidad","ubo.pep":"¿Es PEP?","ubo.add":"+ Agregar beneficiario","ubo.remove":"Quitar",
+    "B.h2":"B · Objetivo de la estructura","B.desc":"¿Cuál es el objetivo principal de constituir una sociedad en EE. UU.? Seleccione todas las que apliquen.",
+    "B.o1":"Protección patrimonial","B.o2":"Eficiencia fiscal","B.o3":"Expansión de negocio en EE. UU.","B.o4":"Inversión en valores o cripto","B.o5":"Tenencia de bienes raíces","B.o6":"Sucesión y planeación patrimonial","B.o7":"Comercio electrónico / operación digital","B.o8":"Venta global de productos o servicios","B.o9":"Otro",
+    "B.horizon.title":"Horizonte y tipo de operación","B.horizon.lbl":"Horizonte de tiempo previsto para esta estructura",
+    "opt.select":"Seleccione...","B.h.short":"Corto plazo (menos de 2 años)","B.h.mid":"Mediano plazo (2–5 años)","B.h.long":"Largo plazo (más de 5 años / generacional)",
+    "B.optype.lbl":"¿Planea operar activamente en EE. UU. o solo administrar activos de forma pasiva?","B.op.active":"Operación activa en EE. UU.","B.op.passive":"Administración pasiva de activos","B.op.both":"Ambas / aún no lo defino",
+    "C.h2":"C · Perfil patrimonial","C.networth.lbl":"Rango de patrimonio neto aproximado","C.nw.over5m":"Más de US$5,000,000",
+    "C.source.title":"Fuente principal de sus ingresos o patrimonio","C.s1":"Salario / honorarios profesionales","C.s2":"Utilidades empresariales","C.s3":"Venta de activos","C.s4":"Herencia o donación","C.s5":"Inversiones financieras","C.s6":"Otro",
+    "C.assets.title":"Activos que planea aportar o movilizar inicialmente","C.a1":"Efectivo / ahorros","C.a2":"Bienes raíces","C.a3":"Portafolio de valores","C.a4":"Criptoactivos","C.a5":"Participaciones en empresas operativas","C.a6":"Otro",
+    "C.initial.lbl":"Monto aproximado a aportar inicialmente (USD)",
+    "D.h2":"D · Origen y movimiento de fondos","D.transfer.lbl":"Monto aproximado a transferir a EE. UU. en los próximos 12 meses (USD)","D.bank.lbl":"Banco(s) de origen de los fondos","D.origin.lbl":"¿Los fondos provienen de actividades realizadas en su país de residencia?","D.no.explain":"No — explicar a continuación","D.explain.lbl":"Explique brevemente",
+    "D.docs.title":"¿Cuenta con documentación que soporte el origen de los fondos?","D.d1":"Declaración de renta","D.d2":"Estados financieros","D.d3":"Contratos de venta","D.d4":"Escrituras públicas","D.d5":"Certificación laboral / de ingresos",
+    "E.h2":"E · Declaraciones de debida diligencia","E.desc":"Requisito regulatorio estándar para todo cliente; se aplica por igual a todos los solicitantes. Virtual Cloud World LLC verificará esta información de forma independiente.",
+    "E.pep.lbl":"1. ¿Usted, su cónyuge, o un familiar hasta segundo grado ha desempeñado en los últimos 5 años un cargo público, de elección popular o de alta gerencia en una entidad estatal (Persona Expuesta Políticamente — PEP)?",
+    "E.pep.role":"Cargo","E.pep.country":"País","E.pep.period":"Período",
+    "E.sanction.lbl":"2. ¿Ha sido usted, su empresa, o algún beneficiario final, objeto de investigación, sanción o proceso judicial relacionado con lavado de activos, financiación del terrorismo, corrupción, fraude o evasión fiscal?",
+    "E.sanctions.lbl":"3. ¿Usted o alguno de los beneficiarios finales mantiene relaciones comerciales o financieras con personas, entidades o países sujetos a sanciones internacionales (OFAC, ONU, Unión Europea)?",
+    "E.note":"Cualquier inconsistencia detectada en el proceso de verificación podrá derivar en una solicitud de soportes adicionales o, en su caso, en la no vinculación del cliente.",
+    "F.h2":"F · Necesidades de banca, inversión y cripto","F.desc":"Servicios financieros de su interés.",
+    "F.s1":"Cuenta corporativa multidivisa","F.s2":"Tesorería / líneas de crédito","F.s3":"Tarjetas corporativas","F.s4":"Acceso a brokers de valores regulados","F.s5":"Cuenta en exchange de criptoactivos regulado","F.s6":"Custodia institucional de criptoactivos","F.s7":"Pasarela de pago (Stripe / PayPal Business)","F.s8":"Vendedor en marketplace (Amazon / Shopify)",
+    "F.exp.title":"Experiencia previa","F.banks.lbl":"¿Tiene experiencia previa con bancos o brokers internacionales?","F.banks.which":"¿Cuáles?","F.crypto.lbl":"¿Opera actualmente con criptoactivos?","F.crypto.which":"¿En qué exchanges o wallets?",
+    "F.profile.lbl":"Perfil como inversionista","F.p1":"Conservador","F.p2":"Moderado","F.p3":"Agresivo","F.p4":"No aplica / sin experiencia",
+    "G.h2":"G · Preferencias de estructura y jurisdicción","G.entity.lbl":"Tipo de entidad preferida","G.e1":"LLC","G.e2":"C-Corporation","G.e3":"Sin preferencia — requiero asesoría","G.state.lbl":"Estado preferido","G.s5":"Sin preferencia","G.multi.lbl":"¿Requiere más de una entidad (estructura holding + operativa)?","G.m3":"No estoy seguro",
+    "G.priority.title":"¿Qué prioriza más en su estructura?","G.pr1":"Privacidad","G.pr2":"Costo de mantenimiento","G.pr3":"Reconocimiento institucional","G.pr4":"Cercanía operativa con LATAM","G.pr5":"Acceso a capital de riesgo","G.pr6":"Velocidad de apertura bancaria",
+    "H.h2":"H · Checklist documental","H.desc":"Marque los documentos que ya tiene disponibles. Al finalizar, use el botón de abajo para enviarlos por correo.",
+    "H.d1":"Pasaporte vigente (cada socio / beneficiario final)","H.d2":"Comprobante de domicilio (máx. 3 meses)","H.d3":"Declaración de renta o estado financiero reciente","H.d4":"Certificado de existencia y representación legal (si es persona jurídica)","H.d5":"Composición accionaria / beneficiarios finales","H.d6":"Referencia bancaria","H.d7":"Soporte de origen de fondos (cuando aplique)",
+    "H.mailbtn":"✉ Enviar documentos por correo",
+    "I.h2":"I · Declaración y consentimiento","I.sum.h":"Resumen de su solicitud",
+    "I.c1":"Declaro que la información suministrada es veraz, completa y verificable, y me comprometo a notificar a Virtual Cloud World LLC cualquier cambio relevante.",
+    "I.c2":"Autorizo el tratamiento de mis datos personales conforme a la política de privacidad de Virtual Cloud World LLC y a la normativa de protección de datos aplicable.",
+    "I.c3":"Entiendo que la vinculación está sujeta al resultado del proceso de debida diligencia y que este cuestionario no garantiza la aceptación como cliente.",
+    "I.sig.lbl":"Nombre completo (firma electrónica)","I.date.lbl":"Fecha",
+    "I.note":"Este cuestionario tiene fines de vinculación y cumplimiento (KYC/AML). No constituye asesoría legal, fiscal o financiera definitiva.",
+    "success.h2":"Cuestionario recibido","success.p":"Gracias por confiarnos esta información. Nuestro equipo revisará su solicitud y se pondrá en contacto para definir los siguientes pasos.","success.back":"Volver al sitio",
+    "footer.text":"Virtual Cloud World LLC · Información tratada de forma confidencial conforme a la normativa de protección de datos aplicable.",
+    "lbl.yes":"Sí","lbl.no":"No","lbl.other":"Otro","lbl.describe":"Descríbalo",
+    "sum.type":"Tipo de solicitante","sum.name":"Nombre / razón social","sum.objective":"Objetivo principal","sum.networth":"Patrimonio neto","sum.entity":"Tipo de entidad","sum.state":"Estado","sum.pep":"¿Es PEP?",
+    "mail.subject":"Documentos - Cuestionario de vinculación","mail.body":"Adjunto los siguientes documentos para mi cuestionario de vinculación","mail.attached":"[adjunto]","mail.pending":"[pendiente]"
+  },
+  en:{
+    "nav.back":"← Back to site","nav.prev":"← Previous","nav.next":"Next →","nav.submit":"Submit questionnaire",
+    "hero.h1":"Client Onboarding Questionnaire",
+    "hero.p":"Information required to evaluate and design your U.S. corporate structure. Please complete it as accurately as possible — all information is treated as strictly confidential.",
+    "docs.title":"Documents to have on hand","docs.subtitle":"(you can email them after completing the form — not all are required to proceed)",
+    "doc.1":"Valid passport","doc.2":"Recent proof of address","doc.3":"Tax return or financial statement","doc.4":"Company certificate (if applicable)",
+    "prog.step":"Step","prog.of":"of",
+    "A.h2":"A · Applicant type and identification","A.desc":"Please indicate whether this application is on behalf of an individual or a legal entity (company).",
+    "A.natural":"Individual","A.juridica":"Legal entity (company)",
+    "A.nat.title":"If individual","A.jur.title":"If legal entity",
+    "A.fullname":"Full legal name","A.idtype":"ID type and number","A.nationality":"Nationality(ies)","A.dob":"Date of birth","A.country":"Country of residence","A.taxcountry":"Tax residency country (if different from above)","A.address":"Residential address","A.phone":"Phone","A.email":"Email address","A.profession":"Profession or occupation","A.employer":"Employer or own business",
+    "A.company":"Legal company name","A.incorp_country":"Country of incorporation","A.incorp_date":"Date of incorporation","A.taxid":"Tax identification number (NIT/RUC/RFC/EIN)","A.activity":"Primary business activity","A.reg_address":"Registered address","A.legal_rep":"Legal representative","A.rep_id":"Legal representative's ID document",
+    "A.ubo.title":"Ultimate beneficial owners (25% or more ownership or effective control)",
+    "ubo.name":"Full name","ubo.pct":"% ownership","ubo.nat":"Nationality","ubo.pep":"PEP?","ubo.add":"+ Add beneficial owner","ubo.remove":"Remove",
+    "B.h2":"B · Structure objective","B.desc":"What is the primary purpose for forming a U.S. entity? Select all that apply.",
+    "B.o1":"Asset protection","B.o2":"Tax efficiency","B.o3":"Business expansion in the U.S.","B.o4":"Investment in securities or crypto","B.o5":"Real estate holding","B.o6":"Estate and succession planning","B.o7":"E-commerce / digital operations","B.o8":"Global sales of products or services","B.o9":"Other",
+    "B.horizon.title":"Timeline and operation type","B.horizon.lbl":"Intended time horizon for this structure",
+    "opt.select":"Select...","B.h.short":"Short term (less than 2 years)","B.h.mid":"Medium term (2–5 years)","B.h.long":"Long term (more than 5 years / generational)",
+    "B.optype.lbl":"Do you plan to actively operate in the U.S. or primarily hold and manage assets passively?","B.op.active":"Active operations in the U.S.","B.op.passive":"Passive asset management","B.op.both":"Both / not yet defined",
+    "C.h2":"C · Asset profile","C.networth.lbl":"Approximate net worth range","C.nw.over5m":"More than US$5,000,000",
+    "C.source.title":"Primary source of income or wealth","C.s1":"Salary / professional fees","C.s2":"Business profits","C.s3":"Asset sales","C.s4":"Inheritance or gift","C.s5":"Financial investments","C.s6":"Other",
+    "C.assets.title":"Assets you plan to contribute or transfer initially","C.a1":"Cash / savings","C.a2":"Real estate","C.a3":"Securities portfolio","C.a4":"Crypto assets","C.a5":"Equity in operating companies","C.a6":"Other",
+    "C.initial.lbl":"Approximate initial contribution amount (USD)",
+    "D.h2":"D · Source and movement of funds","D.transfer.lbl":"Approximate amount to transfer to the U.S. in the next 12 months (USD)","D.bank.lbl":"Source bank(s)","D.origin.lbl":"Do the funds originate from activities carried out in your country of residence?","D.no.explain":"No — please explain below","D.explain.lbl":"Please explain briefly",
+    "D.docs.title":"Do you have documentation to support the source of funds?","D.d1":"Tax return","D.d2":"Financial statements","D.d3":"Sale contracts","D.d4":"Public deeds / notarized documents","D.d5":"Employment or income certification",
+    "E.h2":"E · Due diligence declarations","E.desc":"Standard regulatory requirement for all clients; applied equally to all applicants without exception. Virtual Cloud World LLC will independently verify this information.",
+    "E.pep.lbl":"1. Have you, your spouse, or a second-degree relative held a public office, elected position, or senior management role in a state entity in the past 5 years (Politically Exposed Person — PEP)?",
+    "E.pep.role":"Position / title","E.pep.country":"Country","E.pep.period":"Period",
+    "E.sanction.lbl":"2. Have you, your company, or any ultimate beneficial owner been subject to investigation, sanction, or judicial proceedings related to money laundering, terrorism financing, corruption, fraud, or tax evasion?",
+    "E.sanctions.lbl":"3. Do you or any of the ultimate beneficial owners maintain commercial or financial relationships with persons, entities, or countries subject to international sanctions (OFAC, UN, European Union)?",
+    "E.note":"Any inconsistency detected during the verification process may result in a request for additional supporting documents or, as the case may be, in the denial of onboarding.",
+    "F.h2":"F · Banking, investment, and crypto needs","F.desc":"Financial services of interest.",
+    "F.s1":"Multi-currency corporate account","F.s2":"Treasury / credit lines","F.s3":"Corporate debit/credit cards","F.s4":"Access to regulated securities brokers","F.s5":"Corporate account at a regulated crypto exchange","F.s6":"Institutional crypto asset custody","F.s7":"Payment processor (Stripe / PayPal Business)","F.s8":"Marketplace seller account (Amazon / Shopify)",
+    "F.exp.title":"Prior experience","F.banks.lbl":"Do you have prior experience with international banks or brokers?","F.banks.which":"Which ones?","F.crypto.lbl":"Do you currently operate with crypto assets?","F.crypto.which":"Which exchanges or wallets?",
+    "F.profile.lbl":"Investor profile","F.p1":"Conservative","F.p2":"Moderate","F.p3":"Aggressive","F.p4":"Not applicable / no prior experience",
+    "G.h2":"G · Structure and jurisdiction preferences","G.entity.lbl":"Preferred entity type","G.e1":"LLC","G.e2":"C-Corporation","G.e3":"No preference — I need guidance","G.state.lbl":"Preferred state","G.s5":"No preference","G.multi.lbl":"Do you require more than one entity (e.g., holding + operating structure)?","G.m3":"Not sure",
+    "G.priority.title":"What do you prioritize most in your structure?","G.pr1":"Privacy","G.pr2":"Maintenance cost","G.pr3":"Institutional recognition","G.pr4":"Operational proximity to LATAM","G.pr5":"Access to venture capital","G.pr6":"Speed of bank account opening",
+    "H.h2":"H · Document checklist","H.desc":"Check the documents you already have available. Use the button below to send them by email — you do not need all of them to proceed.",
+    "H.d1":"Valid passport (each member / beneficial owner)","H.d2":"Proof of address (max. 3 months old)","H.d3":"Tax return or recent financial statement","H.d4":"Certificate of existence and legal representation (if legal entity)","H.d5":"Ownership structure / beneficial owners list","H.d6":"Bank reference","H.d7":"Source of funds documentation (when applicable)",
+    "H.mailbtn":"✉ Send documents by email",
+    "I.h2":"I · Declaration and consent","I.sum.h":"Your application summary",
+    "I.c1":"I declare that the information provided is truthful, complete, and verifiable, and I commit to notifying Virtual Cloud World LLC of any relevant changes.",
+    "I.c2":"I authorize the processing of my personal data in accordance with the privacy policy of Virtual Cloud World LLC and applicable data protection regulations.",
+    "I.c3":"I understand that onboarding is subject to the outcome of Virtual Cloud World LLC's due diligence process and that this questionnaire does not guarantee acceptance as a client.",
+    "I.sig.lbl":"Full name (electronic signature)","I.date.lbl":"Date",
+    "I.note":"This questionnaire is for onboarding and compliance purposes (KYC/AML). It does not constitute definitive legal, tax, or financial advice.",
+    "success.h2":"Questionnaire received","success.p":"Thank you for sharing this information with us. Our team will review your application and contact you to define the next steps.","success.back":"Back to site",
+    "footer.text":"Virtual Cloud World LLC · All information is treated as strictly confidential in accordance with applicable data protection regulations.",
+    "lbl.yes":"Yes","lbl.no":"No","lbl.other":"Other","lbl.describe":"Please describe",
+    "sum.type":"Applicant type","sum.name":"Name / company","sum.objective":"Primary objective","sum.networth":"Net worth","sum.entity":"Entity type","sum.state":"State","sum.pep":"PEP?",
+    "mail.subject":"Documents - Onboarding questionnaire","mail.body":"I am attaching the following documents for my onboarding questionnaire","mail.attached":"[attached]","mail.pending":"[pending]"
+  }
+};
+
+let lang = localStorage.getItem('vcw-lang') || 'es';
+
+function setLang(l){
+  lang = l;
+  document.documentElement.lang = l;
+  document.getElementById('btn-es').classList.toggle('active', l==='es');
+  document.getElementById('btn-en').classList.toggle('active', l==='en');
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k = el.getAttribute('data-i18n');
+    if(T[l][k] !== undefined) el.innerHTML = T[l][k];
+  });
+  // update select options
+  document.querySelectorAll('select option[data-i18n]').forEach(opt=>{
+    const k = opt.getAttribute('data-i18n');
+    if(T[l][k]) opt.textContent = T[l][k];
+  });
+  // update step title in progress bar
+  const stepEl = document.querySelector('.step.active');
+  if(stepEl){
+    document.getElementById('step-title').textContent = stepEl.getAttribute('data-title-'+l);
+  }
+  // update ubo remove buttons (dynamically created)
+  document.querySelectorAll('.ubo-remove').forEach(b=> b.textContent = T[l]['ubo.remove']);
+  localStorage.setItem('vcw-lang', l);
+}
+
+// ===== FORM LOGIC =====
+const steps = Array.from(document.querySelectorAll('.step'));
+const total = steps.length;
+let current = 1;
+document.getElementById('step-total').textContent = total;
+
+const btnPrev = document.getElementById('btn-prev');
+const btnNext = document.getElementById('btn-next');
+const btnSubmit = document.getElementById('btn-submit');
+
+function showStep(n){
+  steps.forEach(s=> s.classList.toggle('active', parseInt(s.dataset.step)===n));
+  document.getElementById('step-current').textContent = n;
+  const stepEl = steps[n-1];
+  document.getElementById('step-title').textContent = stepEl.getAttribute('data-title-'+lang);
+  document.getElementById('progress-fill').style.width = (n/total*100)+'%';
+  btnPrev.disabled = n===1;
+  btnNext.style.display = n===total ? 'none':'inline-block';
+  btnSubmit.style.display = n===total ? 'inline-block':'none';
+  if(n===total) renderSummary();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function validateStep(n){
+  const stepEl = steps[n-1];
+  for(const el of stepEl.querySelectorAll('input,select,textarea')){
+    if(!el.reportValidity()) return false;
+  }
+  return true;
+}
+
+btnNext.addEventListener('click', ()=>{ if(!validateStep(current)) return; if(current<total){current++;showStep(current);} });
+btnPrev.addEventListener('click', ()=>{ if(current>1){current--;showStep(current);} });
+
+// Toggle natural / juridica
+document.querySelectorAll('input[name=tipo_solicitante]').forEach(r=>{
+  r.addEventListener('change', ()=>{
+    document.getElementById('natural-fields').style.display = r.value==='natural' ? 'block':'none';
+    document.getElementById('juridica-fields').style.display = r.value==='juridica' ? 'block':'none';
+  });
+});
+
+// Generic toggles
+function bindToggle(cbId, blockId){
+  const cb = document.getElementById(cbId);
+  if(!cb) return;
+  cb.addEventListener('change', ()=> document.getElementById(blockId).classList.toggle('show', cb.checked));
+}
+bindToggle('objetivo-otro-cb','objetivo-otro-block');
+bindToggle('fuente-otro-cb','fuente-otro-block');
+bindToggle('activos-otro-cb','activos-otro-block');
+
+function bindRadioToggle(yesId, blockId, showOnYes){
+  const el = document.getElementById(yesId);
+  if(!el) return;
+  document.getElementsByName(el.name).forEach(r=> r.addEventListener('change', ()=>{
+    const show = showOnYes ? (r.value==='si'&&r.checked) : (r.value==='no'&&r.checked);
+    if(r.checked) document.getElementById(blockId).classList.toggle('show', show);
+  }));
+}
+bindRadioToggle('fondos-no','fondos-no-block',false);
+bindRadioToggle('pep-si','pep-block',true);
+bindRadioToggle('bancos-si','bancos-block',true);
+bindRadioToggle('cripto-si','cripto-block',true);
+
+// Opt highlight
+document.querySelectorAll('.opt input').forEach(inp=>{
+  inp.addEventListener('change', ()=>{
+    if(inp.type==='radio'){
+      document.getElementsByName(inp.name).forEach(r=> r.closest('.opt').classList.toggle('checked',r.checked));
+    } else {
+      inp.closest('.opt').classList.toggle('checked',inp.checked);
+    }
+  });
+});
+
+// UBO table
+let uboCount=0;
+function addUboRow(){
+  uboCount++;
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td><input type="text" name="ubo_nombre_${uboCount}"></td>
+    <td><input type="number" name="ubo_pct_${uboCount}" min="0" max="100"></td>
+    <td><input type="text" name="ubo_nat_${uboCount}"></td>
+    <td><select name="ubo_pep_${uboCount}"><option value="no">No</option><option value="si">${T[lang]['lbl.yes']||'Sí'}</option></select></td>
+    <td><button type="button" class="ubo-remove">${T[lang]['ubo.remove']||'Quitar'}</button></td>`;
+  tr.querySelector('.ubo-remove').addEventListener('click', ()=> tr.remove());
+  document.getElementById('ubo-body').appendChild(tr);
+}
+document.getElementById('add-ubo').addEventListener('click', addUboRow);
+addUboRow();
+
+// Default date
+document.getElementById('fecha-firma').value = new Date().toISOString().split('T')[0];
+
+// Summary
+function radioLabel(name){
+  const checked = document.querySelector(`input[name="${name}"]:checked`);
+  return checked ? (checked.parentElement.querySelector('span')?.textContent || checked.parentElement.textContent).trim() : '—';
+}
+function checkedLabels(name){
+  return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`))
+    .map(e=> (e.parentElement.querySelector('span')?.textContent || e.parentElement.textContent).trim()).join(', ') || '—';
+}
+function renderSummary(){
+  const t = T[lang];
+  const isJur = document.querySelector('[name=tipo_solicitante]:checked')?.value === 'juridica';
+  const nombre = isJur ? document.querySelector('[name=razon_social]').value : document.querySelector('[name=nombres_completos]').value;
+  const rows = [
+    [t['sum.type'], radioLabel('tipo_solicitante')],
+    [t['sum.name'], nombre||'—'],
+    [t['sum.objective'], checkedLabels('objetivo')],
+    [t['sum.networth'], radioLabel('patrimonio_neto')],
+    [t['sum.entity'], radioLabel('tipo_entidad')],
+    [t['sum.state'], radioLabel('estado_preferido')],
+    [t['sum.pep'], radioLabel('es_pep')],
+  ];
+  document.getElementById('summary-content').innerHTML = rows.map(r=>
+    `<div class="summary-row"><span>${r[0]}</span><span>${r[1]}</span></div>`).join('');
+}
+
+// Formspree submit
+// ⚠️ Replace YOUR_FORM_ID with your Formspree form ID (https://formspree.io/f/xxxxxxx)
+const FORM_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+
+document.getElementById('kyc-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  if(!validateStep(total)) return;
+  const formData = new FormData(this);
+  formData.append('_language', lang);
+  fetch(FORM_ENDPOINT, {method:'POST', body:formData, headers:{'Accept':'application/json'}})
+    .then(res=>{
+      if(res.ok){
+        document.getElementById('form-screen').style.display='none';
+        document.getElementById('success-screen').classList.add('show');
+        window.scrollTo({top:0,behavior:'smooth'});
+      } else { throw new Error(); }
+    })
+    .catch(()=>{
+      const msg = lang==='en'
+        ? 'The form could not be submitted automatically. Please email us at info@virtualcloudworld.com with this information, or try again.'
+        : 'No fue posible enviar el formulario automáticamente. Por favor escríbanos a info@virtualcloudworld.com con esta información, o inténtelo de nuevo.';
+      alert(msg);
+    });
+});
+
+// Mail docs button
+document.getElementById('mail-docs-btn').addEventListener('click', function(e){
+  e.preventDefault();
+  const t = T[lang];
+  const docKeys = {
+    doc_pasaporte_listo: t['H.d1'],
+    doc_domicilio_listo: t['H.d2'],
+    doc_renta_listo: t['H.d3'],
+    doc_certificado_existencia_listo: t['H.d4'],
+    doc_composicion_accionaria_listo: t['H.d5'],
+    doc_referencia_bancaria_listo: t['H.d6'],
+    doc_origen_fondos_listo: t['H.d7']
+  };
+  const isJur = document.querySelector('[name=tipo_solicitante]:checked')?.value === 'juridica';
+  const nombre = isJur ? document.querySelector('[name=razon_social]').value : document.querySelector('[name=nombres_completos]').value;
+  let body = `${t['mail.body']}${nombre ? ' ('+nombre+')' : ''}:%0D%0A%0D%0A`;
+  Object.entries(docKeys).forEach(([key,label])=>{
+    const checked = document.querySelector(`[name=${key}]`).checked;
+    body += `${checked ? t['mail.attached'] : t['mail.pending']} ${label}%0D%0A`;
+  });
+  const sub = encodeURIComponent(t['mail.subject']);
+  window.location.href = `mailto:info@virtualcloudworld.com?subject=${sub}&body=${body}`;
+});
+
+// Init
+setLang(lang);
+showStep(1);
+</script>
+</body>
+</html>
